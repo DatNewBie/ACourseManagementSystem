@@ -40,3 +40,34 @@ void createacc()
 	f << password << endl;
 	f.close();
 }
+
+
+void login()
+{
+	char acc[100], pass[100],acc1[100],pass1[100];
+	bool ok = false;
+	cout << "nhap vao tai khoan: ";
+	cin.getline(acc, 100);
+	cout << "nhap vao mat khau: ";
+	cin.getline(pass, 100);
+	fstream f;
+	f.open("accstudents.txt", ios::in);
+	while (!ok)
+	{
+		while ((!f.eof()))
+		{
+			f.getline(acc1, 100);
+			f.getline(pass1, 100);
+			if (strcmp(acc, acc1) == 0 && strcmp(pass, pass1) == 0)
+			{
+				cout << "dang nhap thanh cong " << endl;
+				ok = true;
+				return;
+			}
+			f.getline(acc1, 100);
+			f.getline(pass1, 100);
+		}
+		ok = true;
+	}
+	cout << "dang nhap that bai " << endl;
+}
