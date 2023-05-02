@@ -137,9 +137,6 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="accstudents.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="ACourseManagementSystem.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

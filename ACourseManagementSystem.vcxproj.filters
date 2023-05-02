@@ -37,9 +37,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="accstudents.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="ACourseManagementSystem.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>

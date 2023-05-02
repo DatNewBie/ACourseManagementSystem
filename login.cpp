@@ -1,73 +1,24 @@
 #include"login.h"
 
-void createacc()
-{	
-	char username[100], password[100], temp[100];
-	bool ok = false; int dem = 0;
-	cout << "ten tai khoan: ";
-	cin.getline(username, 100);
-	while (!ok)
-	{
-		fstream f;
-		f.open("accstudents.txt", ios::in);
-		dem = 0;
-		while (!f.eof()) {
-			f.getline(temp, 100);
-			if (strcmp(temp, username) == 0)
-			{
-				cout << "ten tai khoan da ton tai, nhap ten khac" << endl;
-				dem++;
-				break;
-			} 
-			f.getline(temp, 100);
+bool login(string tk, string mk,list*&l,list*&p,schoolyear scy,int k) {
+	node* temp = p->head;
+	while (temp != NULL) {
+		if (temp->y->id == tk && temp->y->password == mk) {
+			return true;
 		}
-		if (dem != 0)
-		{
-			cout << "ten tai khoan: ";
-			cin.getline(username, 100);
-		}
-		else 
-		{
-			ok = true;
-			f.close();
-		}
+		temp = temp->next;
 	}
-	fstream f;
-	cout << "nhap vao mat khau: ";
-	cin.getline(password, 100);
-	f.open("accstudents.txt", ios::app);
-	f << username << endl;
-	f << password << endl;
-	f.close();
-}
-
-
-void login()
-{
-	char acc[100], pass[100],acc1[100],pass1[100];
-	bool ok = false;
-	cout << "nhap vao tai khoan: ";
-	cin.getline(acc, 100);
-	cout << "nhap vao mat khau: ";
-	cin.getline(pass, 100);
-	fstream f;
-	f.open("accstudents.txt", ios::in);
-	while (!ok)
-	{
-		while ((!f.eof()))
-		{
-			f.getline(acc1, 100);
-			f.getline(pass1, 100);
-			if (strcmp(acc, acc1) == 0 && strcmp(pass, pass1) == 0)
-			{
-				cout << "dang nhap thanh cong " << endl;
-				ok = true;
-				return;
+	if (k == -1) return false;
+	else {
+		for (int i = 1; i <= scy.s[k].numofclass; i++) {
+			node* temp1 = l[i].head;
+			while (temp1 != NULL) {
+				if (tk == temp1->s->studentid && temp1->s->password == mk) {
+					return true;
+				}
+				temp1 = temp1->next;
 			}
-			f.getline(acc1, 100);
-			f.getline(pass1, 100);
 		}
-		ok = true;
+		return false;
 	}
-	cout << "dang nhap that bai " << endl;
 }

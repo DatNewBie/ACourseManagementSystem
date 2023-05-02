@@ -1,4 +1,2 @@
-﻿  func.cpp
-D:\source\repos\22120054-ACourseManagementSystem\ACourseManagementSystem\func.cpp(158,38): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-D:\source\repos\22120054-ACourseManagementSystem\ACourseManagementSystem\func.cpp(225,39): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+﻿  main.cpp
   ACourseManagementSystem.vcxproj -> D:\source\repos\22120054-ACourseManagementSystem\x64\Debug\ACourseManagementSystem.exe

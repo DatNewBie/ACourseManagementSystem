@@ -1,5 +1,132 @@
 #include"func.h"
 
+void init(list*& p) {
+	fstream f;
+	string ms, mk, ho, ten, gt;
+	string details;
+	f.open("staffaccount.txt", ios::in);
+	getline(f, details);
+	p = new list;
+	p->head = new node;
+	p->head->y = new staff;
+	int i = 0;
+	while (i < details.size()) {
+		if (details[i] != 44) {
+			p->head->y->id += details[i];
+			i++;
+		}
+		else {
+			i++;
+			while (i < details.size()) {
+				if (details[i] != 44) {
+					p->head->y->password += details[i];
+					i++;
+				}
+				else {
+					i++;
+					while (i < details.size()) {
+						if (details[i] != 44) {
+							p->head->y->lname += details[i];
+							i++;
+						}
+						else {
+							i++;
+							while (i < details.size()) {
+								if (details[i] != 44) {
+									p->head->y->fname += details[i];
+									i++;
+								}
+								else {
+									i++;
+									while (i < details.size()) {
+										if (details[i] != 44) {
+											p->head->y->gender += details[i];
+											i++;
+										}
+										else {
+											i++;
+											while (i < details.size()) {
+												if (details[i] != 44) {
+													p->head->y->staff = true;
+													i++;
+												}
+												else i = details.size();
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	node* temp = p->head;
+	while (!f.eof()) {
+		i = 0;
+		getline(f, details);
+		while (i < details.size()) {
+			if (details[i] != 44) {
+				ms += details[i];
+				i++;
+			}
+			else {
+				i++;
+				while (i < details.size()) {
+					if (details[i] != 44) {
+						mk += details[i];
+						i++;
+					}
+					else {
+						i++;
+						while (i < details.size()) {
+							if (details[i] != 44) {
+								ho += details[i];
+								i++;
+							}
+							else {
+								i++;
+								while (i < details.size()) {
+									if (details[i] != 44) {
+										ten += details[i];
+										i++;
+									}
+									else {
+										i++;
+										while (i < details.size()) {
+											if (details[i] != 44) {
+												gt += details[i];
+												i++;
+											}
+											else {
+												i++;
+												while (i < details.size()) {
+													if (details[i] != 44) {
+														p->head->y->staff = true;
+														i++;
+													}
+													else i = details.size();
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		temp = addelements1(temp, ms, mk, ho, ten, gt);
+		ms = "";
+		mk = "";
+		ho = "";
+		ten = "";
+		gt = "";
+	}
+}
+
 void createschoolyear(schoolyear& scy) {
 	cout << "nhap vao ten nam hoc: ";
 	getline(cin, scy.name);
@@ -38,9 +165,9 @@ void addstudent(schoolyear& scy) {
 
 void allo(semester& a, list*&l) {
 	if (a.numofclass != 0) {
-		courses* temp = new courses[a.numofclass];
-		list* temp1 = new list[a.numofclass];
-		for (int i = 1; i < a.numofclass; i++) {
+		courses* temp = new courses[a.numofclass+2];
+		list* temp1 = new list[a.numofclass+2];
+		for (int i = 1; i <= a.numofclass; i++) {
 			temp[i].id = a.cr[i].id;
 			temp[i].namecr = a.cr[i].namecr;
 			temp[i].clsname = a.cr[i].clsname;
@@ -49,12 +176,13 @@ void allo(semester& a, list*&l) {
 			temp[i].namefilestudent = a.cr[i].namefilestudent;
 			temp[i].nocre = a.cr[i].nocre;
 		}
-		for (int i = 1; i < a.numofclass; i++) {
+		for (int i = 1; i <= a.numofclass; i++) {
+			temp1[i].head = new node;
 			temp1[i].head = l[i].head;
 		}
-		a.cr = new courses[a.numofclass + 1];
-		l = new list[a.numofclass + 1];
-		for (int i = 1; i < a.numofclass; i++) {
+		a.cr = new courses[a.numofclass + 2];
+		l = new list[a.numofclass + 2];
+		for (int i = 1; i <= a.numofclass; i++) {
 			a.cr[i].id = temp[i].id;
 			a.cr[i].namecr = temp[i].namecr;
 			a.cr[i].clsname = temp[i].clsname;
@@ -63,7 +191,8 @@ void allo(semester& a, list*&l) {
 			a.cr[i].namefilestudent = temp[i].namefilestudent;
 			a.cr[i].nocre = temp[i].nocre;;
 		}
-		for (int i = 1; i < a.numofclass; i++) {
+		for (int i = 1; i <= a.numofclass; i++) {
+			l[i].head = new node;
 			l[i].head = temp1[i].head;
 		}
 		a.numofclass++;
@@ -71,7 +200,7 @@ void allo(semester& a, list*&l) {
 	else {
 		a.numofclass = 1;
 		a.cr = new courses[2];
-		l = new list[1];
+		l = new list[2];
 	}
 }
 
@@ -96,6 +225,7 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 	getline(cin, scy.s[k].cr[scy.s[k].numofclass].dow);
 	cout << "nhap vao du lieu sinh vien trong khoa hoc: ";
 	cin >> temp;
+	cin.ignore();
 	scy.s[k].cr[scy.s[k].numofclass].namefilestudent = scy.s[k].cr[scy.s[k].numofclass].namecr;
 	fstream f, f1;
 	f.open(temp, ios::in);
@@ -169,7 +299,12 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 			}
 		}
 	}
+	l[scy.s[k].numofclass].head->s->staff = false;
+	l[scy.s[k].numofclass].head->s->password="123456@";
 	node* p = new node;
+	fstream f2;
+	f2.open("studentaccount.txt", ios::app);
+	f2 << endl<< l[scy.s[k].numofclass].head->s->studentid << "," << l[scy.s[k].numofclass].head->s->password << "," << l[scy.s[k].numofclass].head->s->lname << "," << l[scy.s[k].numofclass].head->s->fname << "," << l[scy.s[k].numofclass].head->s->gender << "," << l[scy.s[k].numofclass].head->s->staff << endl;
 	p = l[scy.s[k].numofclass].head;
 	while (!f.eof()) {
 		getline(f, details);
@@ -237,15 +372,18 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 			}
 		}
 		p = addelements(p, stt, mssv,ho, ten, gt, sinhnhat, cccd);
+		f2 << mssv << "," << "123456@" << "," << ho << "," << ten << "," << gt << "," << "0" << endl;
 		stt = "";
 		mssv = "";
 		ten = "";
+		ho = "";
 		gt = "";
 		sinhnhat = "";
 		cccd = "";
 	}
 	f.close();
 	f1.close();
+	f2.close();
 }
 
 node* createnode(string stt, string mssv,string ho, string ten, string gt, string sinhnhat, string cccd) {
@@ -259,11 +397,32 @@ node* createnode(string stt, string mssv,string ho, string ten, string gt, strin
 	temp1->s->gender = gt;
 	temp1->s->birth = sinhnhat;
 	temp1->s->socialid = cccd;
+	temp1->s->staff = false;
+	temp1->s->password = "123456@";
 	return temp1;
 }
 
 node* addelements(node* p, string stt, string mssv,string ho, string ten, string gt, string sinhnhat, string cccd) {
 	node*temp1 = createnode(stt, mssv,ho, ten, gt, sinhnhat, cccd);
+	p->next = temp1;
+	return temp1;
+}
+
+node* createnode1(string ms, string mk, string ho, string ten, string gt) {
+	node* temp1 = new node;
+	temp1->y = new staff;
+	temp1->next = NULL;
+	temp1->y->id = ms;
+	temp1->y->password = mk;
+	temp1->y->lname = ho;
+	temp1->y->fname = ten;
+	temp1->y->gender = gt;
+	temp1->y->staff = true;
+	return temp1;
+}
+
+node* addelements1(node* p, string ms, string mk, string ho, string ten, string gt) {
+	node* temp1 = createnode1(ms, mk, ho, ten, gt);
 	p->next = temp1;
 	return temp1;
 }
