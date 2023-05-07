@@ -1,2 +1,3 @@
 ﻿  main.cpp
+D:\source\repos\22120054-ACourseManagementSystem\ACourseManagementSystem\main.cpp(5,14): warning C4101: 'x': unreferenced local variable
   ACourseManagementSystem.vcxproj -> D:\source\repos\22120054-ACourseManagementSystem\x64\Debug\ACourseManagementSystem.exe

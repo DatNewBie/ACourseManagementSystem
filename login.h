@@ -1,8 +1,4 @@
-#include<iostream>
-#include<string.h>
-#include<fstream>
 #include"func.h"
 
-using namespace std;
-
-bool login(string tk, string mk, list*& l, list*& p, schoolyear scy,int k);
+node* loginstaf(string tk, string mk, list* l);
+node* loginstud(string tk, string mk, list* l);

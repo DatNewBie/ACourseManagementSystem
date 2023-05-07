@@ -1,24 +1,27 @@
 #include"login.h"
 
-bool login(string tk, string mk,list*&l,list*&p,schoolyear scy,int k) {
-	node* temp = p->head;
+node* loginstaf(string tk, string mk,list*l) {
+	node* temp = l->head;
 	while (temp != NULL) {
 		if (temp->y->id == tk && temp->y->password == mk) {
-			return true;
+			return temp;
 		}
 		temp = temp->next;
 	}
-	if (k == -1) return false;
-	else {
-		for (int i = 1; i <= scy.s[k].numofclass; i++) {
-			node* temp1 = l[i].head;
-			while (temp1 != NULL) {
-				if (tk == temp1->s->studentid && temp1->s->password == mk) {
-					return true;
-				}
-				temp1 = temp1->next;
+	return NULL;
+}
+
+node* loginstud(string tk, string mk, list* l) {
+	node* temp = l[1].head;
+	int i = 1;
+	while (temp != NULL) {
+		for (temp = l[i].head; temp != NULL; temp = temp->next) {
+			if (temp->s->studentid == tk && temp->s->password == mk) {
+				return temp;
 			}
 		}
-		return false;
+		i++;
+		temp = l[i].head;
 	}
+	return NULL;
 }

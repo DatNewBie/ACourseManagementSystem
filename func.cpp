@@ -2,7 +2,7 @@
 
 void init(list*& p) {
 	fstream f;
-	string ms, mk, ho, ten, gt;
+	string ms, mk, ho, ten, gt,sn;
 	string details;
 	f.open("staffaccount.txt", ios::in);
 	getline(f, details);
@@ -47,10 +47,19 @@ void init(list*& p) {
 											i++;
 											while (i < details.size()) {
 												if (details[i] != 44) {
-													p->head->y->staff = true;
+													p->head->y->birth += details[i];
 													i++;
 												}
-												else i = details.size();
+												else {
+													i++;
+													while (i < details.size()) {
+														if (details[i] != 44) {
+															p->head->y->staff = true;
+															i++;
+														}
+														else i = details.size();
+													}
+												}
 											}
 										}
 									}
@@ -103,10 +112,19 @@ void init(list*& p) {
 												i++;
 												while (i < details.size()) {
 													if (details[i] != 44) {
-														p->head->y->staff = true;
+														sn += details[i];
 														i++;
 													}
-													else i = details.size();
+													else {
+														i++;
+														while (i < details.size()) {
+															if (details[i] != 44) {
+																p->head->y->staff = true;
+																i++;
+															}
+															else  i = details.size();
+														}	
+													}
 												}
 											}
 										}
@@ -118,27 +136,30 @@ void init(list*& p) {
 				}
 			}
 		}
-		temp = addelements1(temp, ms, mk, ho, ten, gt);
+		temp = addelements1(temp, ms, mk, ho, ten, gt,sn);
 		ms = "";
 		mk = "";
 		ho = "";
 		ten = "";
 		gt = "";
+		sn = "";
 	}
 }
 
 void createschoolyear(schoolyear& scy) {
-	cout << "nhap vao ten nam hoc: ";
+	cin.ignore();
+	cout << "new schoolyear: ";
 	getline(cin, scy.name);
 }
 
 void createclasses(schoolyear& scy) {
-	cout << "nhap vao so luong lop: ";
+	cout << "quantity of class: ";
 	cin >> scy.quantity;
-	scy.c = new classes[scy.quantity];
+	scy.c = new classes[scy.quantity + 1];
 	cin.ignore();
-	cout << "nhap vao ten cua tung lop: " << endl;
-	for (int i = 0; i < scy.quantity; i++) {
+	cout << "name of class: " << endl;
+	for (int i = 1; i <= scy.quantity; i++) {
+		cout << i << ") ";
 		getline(cin, scy.c[i].name);
 	}
 }
@@ -147,12 +168,12 @@ void addstudent(schoolyear& scy) {
 	fstream f, f1;
 	int k = 0;
 	string details, temp;
-	cout << "nhap vao so thu tu cua lop ma ban muon them sinh vien vao: ";
+	cout << "the number of class which need to add student: ";
 	cin >> k;
 	scy.c[k].namefile = scy.c[k].name;
 	scy.c[k].namefile += ".csv";
 	f.open(scy.c[k].namefile, ios::app);
-	cout << "nhap duong link du lieu sinh vien: ";
+	cout << "link data student: ";
 	cin >> temp;
 	f1.open(temp, ios::in);
 	while (!f1.eof()) {
@@ -161,6 +182,13 @@ void addstudent(schoolyear& scy) {
 	}
 	f.close();
 	f1.close();
+}
+
+void createsemester(schoolyear& scy,int k) {
+	cout << "start date: ";
+	getline(cin, scy.s[k].startdate);
+	cout << "end date: ";
+	getline(cin, scy.s[k].enddate);
 }
 
 void allo(semester& a, list*&l) {
@@ -207,23 +235,19 @@ void allo(semester& a, list*&l) {
 void addacourses(schoolyear& scy, int k, list*& l) {
 	string temp, temp1, details,stt,ho,ten,mssv,sinhnhat,gt,cccd;
 	allo( scy.s[k], l);
-	cout << "nhap vao ngay bat dau cua khoa hoc: ";
-	getline(cin, scy.s[k].startdate);
-	cout << "nhap vao ngay ket thuc cua khoa hoc: ";
-	getline(cin,scy.s[k].enddate);
-	cout << "nhap vao ma so khoa hoc: ";
+	cout << "course id: ";
 	getline(cin,scy.s[k].cr[scy.s[k].numofclass].id);
-	cout << "nhap vao ten khoa hoc: ";
+	cout << "course name: ";
 	getline(cin,scy.s[k].cr[scy.s[k].numofclass].namecr);
-	cout << "nhap vao ten lop hoc: ";
+	cout << "class name: ";
 	getline(cin,scy.s[k].cr[scy.s[k].numofclass].clsname);
-	cout << "nhap vao ten giao vien: ";
+	cout << "teacher name: ";
 	getline(cin,scy.s[k].cr[scy.s[k].numofclass].teachername);
-	cout << "nhap vao so tin chi: ";
+	cout << "number of credits: ";
 	getline(cin,scy.s[k].cr[scy.s[k].numofclass].nocre);
-	cout << "nhap vao ngay va gio dien ra buoi hoc: ";
+	cout << "day of the week and the session that the course will be performed: ";
 	getline(cin, scy.s[k].cr[scy.s[k].numofclass].dow);
-	cout << "nhap vao du lieu sinh vien trong khoa hoc: ";
+	cout << "link data student: ";
 	cin >> temp;
 	cin.ignore();
 	scy.s[k].cr[scy.s[k].numofclass].namefilestudent = scy.s[k].cr[scy.s[k].numofclass].namecr;
@@ -381,6 +405,7 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 		sinhnhat = "";
 		cccd = "";
 	}
+	l[scy.s[k].numofclass + 1].head = NULL;
 	f.close();
 	f1.close();
 	f2.close();
@@ -408,7 +433,7 @@ node* addelements(node* p, string stt, string mssv,string ho, string ten, string
 	return temp1;
 }
 
-node* createnode1(string ms, string mk, string ho, string ten, string gt) {
+node* createnode1(string ms, string mk, string ho, string ten, string gt,string sn) {
 	node* temp1 = new node;
 	temp1->y = new staff;
 	temp1->next = NULL;
@@ -417,12 +442,73 @@ node* createnode1(string ms, string mk, string ho, string ten, string gt) {
 	temp1->y->lname = ho;
 	temp1->y->fname = ten;
 	temp1->y->gender = gt;
+	temp1->y->birth = sn;
 	temp1->y->staff = true;
 	return temp1;
 }
 
-node* addelements1(node* p, string ms, string mk, string ho, string ten, string gt) {
-	node* temp1 = createnode1(ms, mk, ho, ten, gt);
+node* addelements1(node* p, string ms, string mk, string ho, string ten, string gt,string sn) {
+	node* temp1 = createnode1(ms, mk, ho, ten, gt,sn);
 	p->next = temp1;
 	return temp1;
+}
+
+void addastudent(int k,list*& l) {
+	string stt, ms, ho, ten, gt, sn, cccd;
+	node* temp1 = new node;
+	node* temp = l[k].head;
+	while (l[k].head->next != NULL) {
+		l[k].head = l[k].head->next;
+	}
+	int n = stoi(temp->s->no);
+	n++;
+	temp1->s = new student;
+	temp1->s->no = to_string(n);
+	cout << "id: ";
+	getline(cin, temp1->s->studentid);
+	cout << "last name: ";
+	getline(cin, temp1->s->lname);
+	cout << "first name: ";
+	getline(cin, temp1->s->fname);
+	cout << "gender: ";
+	getline(cin, temp1->s->gender);
+	cout << "date of birth: ";
+	getline(cin, temp1->s->birth);
+	cout << "social id: ";
+	getline(cin, temp1->s->socialid);
+	temp1->s->password = "123456@";
+	temp1->s->staff = false;
+	l[k].head->next = temp1;
+	temp1->next = NULL;
+	l[k].head = temp;
+}
+
+void delstudent(int k, list*& l) {
+	string ms;
+	cout << "student's id need to delete: ";
+	getline(cin, ms);
+	node* temp = l[k].head;
+	if (l[k].head->s->studentid == ms) {
+		l[k].head = l[k].head->next;
+		return;
+	}
+	else {
+		node* temp1 = l[k].head;
+		l[k].head = l[k].head->next;
+		while (l[k].head->next != NULL) {
+			if (l[k].head->s->studentid == ms) {
+				temp1->next = l[k].head->next;
+				l[k].head = temp;
+				return;
+			}
+			temp1 = l[k].head;
+			l[k].head = l[k].head->next;
+		}
+		if (l[k].head->s->studentid == ms) {
+			l[k].head = temp1;
+			l[k].head->next = NULL;
+			l[k].head = temp;
+			return;
+		}
+	}
 }
