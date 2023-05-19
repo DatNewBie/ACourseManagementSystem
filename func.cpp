@@ -489,7 +489,9 @@ void delstudent(int k, list*& l) {
 	getline(cin, ms);
 	node* temp = l[k].head;
 	if (l[k].head->s->studentid == ms) {
+		node* temp1 = l[k].head;
 		l[k].head = l[k].head->next;
+		delete temp1;
 		return;
 	}
 	else {
@@ -511,4 +513,11 @@ void delstudent(int k, list*& l) {
 			return;
 		}
 	}
+}
+
+void deletecourse(semester& s, list*& l, int k) {
+	for (int i = k; i <= s.numofclass; i++) {
+		l[i].head = l[i + 1].head;
+	}
+	s.numofclass--;
 }
