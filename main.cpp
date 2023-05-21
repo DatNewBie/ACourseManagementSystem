@@ -2,7 +2,7 @@
 
 int main() {
 	string tk, mk;
-	int i = -1, x;
+	int i = -1, x, q;
 	list* l, * p;
 	schoolyear scy;
 	init(p);
@@ -11,7 +11,7 @@ int main() {
 		cin >> tk;
 		cout << "password: ";
 		cin >> mk;
-		if (loginstaf(tk, mk, p)!=NULL) {
+		if (loginstaf(tk, mk, p) != NULL) {
 			node* temp = loginstaf(tk, mk, p);
 			cout << "0) log out" << endl;
 			cout << "1) my information" << endl;
@@ -30,13 +30,9 @@ int main() {
 				switch (x) {
 				case 1: {
 					system("cls");
-					cout << "id: " << temp->y->id << endl;
-					cout << "name :" << temp->y->lname << " " << temp->y->fname << endl;
-					cout << "gender: " << temp->y->gender << endl;
-					cout << "birth: " << temp->y->birth << endl;
-					cout << "staff: true" << endl << endl;
+					myinformation(temp);
 					cout << "0) back" << endl;
-					cout << "1) change information";
+					cout << "1) change information" << endl;
 					cout << "your choice: " << endl;
 					int k;
 					cin >> k;
@@ -56,61 +52,23 @@ int main() {
 							while (l != 0) {
 								switch (l) {
 								case 1: {
-									string mk;
-									cout << "input your current password: ";
-									cin >> mk;
-									if (mk != temp->y->password) cout << "wrong password" << endl;
-									else {
-										cout << "input your new password: ";
-										cin >> mk;
-										cout << "input your new password again: ";
-										string mk1;
-										cin >> mk1;
-										if (mk == mk1) cout << "change password successfully" << endl;
-										else cout << "password incorrect" << endl;
-									}
+									changeinfo(temp, l);
 									break;
 								}
 								case 2: {
-									string ho;
-									cout << "input your new last name: ";
-									cin.ignore();
-									getline(cin, ho);
-									temp->y->lname = ho;
-									cout << "change your last name successfully" << endl;
+									changeinfo(temp, l);
 									break;
 								}
 								case 3: {
-									string ten;
-									cout << "input your new first name: ";
-									cin.ignore();
-									getline(cin, ten);
-									temp->y->fname = ten;
-									cout << "change your first name successfully" << endl;
+									changeinfo(temp, l);
 									break;
 								}
 								case 4: {
-									int k;
-									cout << "1) male" << endl;
-									cout << "2) female" << endl;
-									cout << "your choice: " << endl;
-									cin >> k;
-									if (k == 1) {
-										temp->y->gender = "male";
-										cout << "change your gender successfully" << endl;
-									}
-									if (k == 2) {
-										temp->y->gender = "female";
-										cout << "change your gender successfully" << endl;
-									}
+									changeinfo(temp, l);
 									break;
 								}
 								case 5: {
-									string ns;
-									cout << "input your new birth: ";
-									cin >> ns;
-									temp->y->birth = ns;
-									cout << "change your birth successfully" << endl;
+									changeinfo(temp, l);
 									break;
 								}
 								}
@@ -132,6 +90,35 @@ int main() {
 					}
 					break;
 				}
+				case 2: {
+					createschoolyear(scy);
+					break;
+				}
+				case 3: {
+					createclasses(scy);
+					break;
+				}
+				case 4: {
+					addstudent(scy);
+					break;
+				}
+				case 5: {
+					cout << "the semester you want to create: ";
+					cin >> q;
+					createsemester(scy, q);
+					break;
+				}
+				case 6: {
+					addacourses(scy, q, l);
+					break;
+				}
+				case 7: {
+					listofcourses(scy, q);
+					break;
+				}
+				case 8: {
+
+				}
 				}
 				system("cls");
 				cout << "0) log out" << endl;
@@ -149,5 +136,6 @@ int main() {
 				cin >> x;
 			}
 		}
+		else cout << "user name or password incorrect" << endl;
 	}
 }

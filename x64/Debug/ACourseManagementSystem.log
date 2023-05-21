@@ -1,5 +1,2 @@
-﻿  login.cpp
-  main.cpp
-D:\source\repos\22120054-ACourseManagementSystem\ACourseManagementSystem\main.cpp(6,8): warning C4101: 'l': unreferenced local variable
-  Generating Code...
+﻿  main.cpp
   ACourseManagementSystem.vcxproj -> D:\source\repos\22120054-ACourseManagementSystem\x64\Debug\ACourseManagementSystem.exe

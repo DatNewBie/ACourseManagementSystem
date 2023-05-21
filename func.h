@@ -51,9 +51,10 @@ void init(list*& p);
 void createschoolyear(schoolyear& scy);
 void createclasses(schoolyear& scy);
 void addstudent(schoolyear& scy);
-void createsemester(schoolyear& scy, int k);
+void createsemester(schoolyear& scy,int k);
 void addacourses(schoolyear& scy, int k, list*& l);
 void allo(semester& a, list*& l);
+void listofcourses(schoolyear scy, int q);
 node* createnode(string stt, string mssv,string ho, string ten, string gt, string sinhnhat, string cccd);
 node* addelements(node*p,string stt, string mssv,string ho, string ten, string gt, string sinhnhat, string cccd);
 node* createnode1(string ms,string mk, string ho, string ten, string gt,string sn);
@@ -61,3 +62,5 @@ node* addelements1(node* p, string ms, string mk, string ho, string ten, string 
 void addastudent(int k,list*& l);
 void delstudent(int k, list*& l);
 void deletecourse(semester& s, list*& l, int k);
+void myinformation(node* temp);
+void changeinfo(node* temp, int k);

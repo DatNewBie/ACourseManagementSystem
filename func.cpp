@@ -150,6 +150,7 @@ void createschoolyear(schoolyear& scy) {
 	cin.ignore();
 	cout << "new schoolyear: ";
 	getline(cin, scy.name);
+	system("pause");
 }
 
 void createclasses(schoolyear& scy) {
@@ -162,12 +163,16 @@ void createclasses(schoolyear& scy) {
 		cout << i << ") ";
 		getline(cin, scy.c[i].name);
 	}
+	system("pause");
 }
 
 void addstudent(schoolyear& scy) {
 	fstream f, f1;
 	int k = 0;
 	string details, temp;
+	for (int i = 1; i <= scy.quantity; i++) {
+		cout <<i<<") "<< scy.c[i].name << endl;
+	}
 	cout << "the number of class which need to add student: ";
 	cin >> k;
 	scy.c[k].namefile = scy.c[k].name;
@@ -182,13 +187,16 @@ void addstudent(schoolyear& scy) {
 	}
 	f.close();
 	f1.close();
+	system("pause");
 }
 
 void createsemester(schoolyear& scy,int k) {
+	cin.ignore();
 	cout << "start date: ";
 	getline(cin, scy.s[k].startdate);
 	cout << "end date: ";
 	getline(cin, scy.s[k].enddate);
+	system("pause");
 }
 
 void allo(semester& a, list*&l) {
@@ -236,6 +244,7 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 	string temp, temp1, details,stt,ho,ten,mssv,sinhnhat,gt,cccd;
 	allo( scy.s[k], l);
 	cout << "course id: ";
+	cin.ignore();
 	getline(cin,scy.s[k].cr[scy.s[k].numofclass].id);
 	cout << "course name: ";
 	getline(cin,scy.s[k].cr[scy.s[k].numofclass].namecr);
@@ -409,6 +418,15 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 	f.close();
 	f1.close();
 	f2.close();
+	system("pause");
+}
+
+void listofcourses(schoolyear scy,int q) {
+	for (int i = 1; i <= scy.s[q].numofclass; i++) {
+		cout << "list of courses in this semester: " << endl;
+		cout << i << ") " << scy.s[q].cr[i].namecr << endl;
+	}
+	system("pause");
 }
 
 node* createnode(string stt, string mssv,string ho, string ten, string gt, string sinhnhat, string cccd) {
@@ -520,4 +538,77 @@ void deletecourse(semester& s, list*& l, int k) {
 		l[i].head = l[i + 1].head;
 	}
 	s.numofclass--;
+}
+
+void myinformation(node* temp) {
+	cout << "id: " << temp->y->id << endl;
+	cout << "name :" << temp->y->lname << " " << temp->y->fname << endl;
+	cout << "gender: " << temp->y->gender << endl;
+	cout << "birth: " << temp->y->birth << endl;
+	if(temp->y->staff==true) cout << "staff: true" << endl << endl;
+	else cout << "staff: false" << endl << endl;
+}
+
+void changeinfo(node* temp, int k) {
+	if (k == 1) {
+		string mk;
+		cout << "input your current password: ";
+		cin >> mk;
+		if (mk != temp->y->password) cout << "wrong password" << endl;
+		else {
+			cout << "input your new password: ";
+			cin >> mk;
+			cout << "input your new password again: ";
+			string mk1;
+			cin >> mk1;
+			if (mk == mk1) {
+				temp->y->password = mk;
+				cout << "change password successfully" << endl;
+			}
+			else cout << "password incorrect" << endl;
+		}
+		return;
+	}
+	if (k == 2) {
+		string ho;
+		cout << "input your new last name: ";
+		cin.ignore();
+		getline(cin, ho);
+		temp->y->lname = ho;
+		cout << "change your last name successfully" << endl;
+		return;
+	}
+	if (k == 3) {
+		string ten;
+		cout << "input your new first name: ";
+		cin.ignore();
+		getline(cin, ten);
+		temp->y->fname = ten;
+		cout << "change your first name successfully" << endl;
+		return;
+	}
+	if (k == 4) {
+		int k;
+		cout << "1) male" << endl;
+		cout << "2) female" << endl;
+		cout << "your choice: " << endl;
+		cin >> k;
+		if (k == 1) {
+			temp->y->gender = "male";
+			cout << "change your gender successfully" << endl;
+		}
+		if (k == 2) {
+			temp->y->gender = "female";
+			cout << "change your gender successfully" << endl;
+		}
+		return;
+	}
+	if (k == 5) {
+		string ns;
+		cout << "input your new birth: ";
+		cin >> ns;
+		temp->y->birth = ns;
+		cout << "change your birth successfully" << endl;
+		return;
+	}
 }
