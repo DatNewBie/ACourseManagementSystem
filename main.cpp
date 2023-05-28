@@ -2,7 +2,7 @@
 
 int main() {
 	string tk, mk;
-	int i = -1, x, q;
+	int i = -1, x, q = 1;
 	list* l, * p;
 	schoolyear scy;
 	init(p);

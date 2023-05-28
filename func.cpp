@@ -471,14 +471,16 @@ node* addelements1(node* p, string ms, string mk, string ho, string ten, string 
 	return temp1;
 }
 
-void addastudent(int k,list*& l) {
+void addastudent(int k,list*& l, courses s) {
+	fstream f;
+	f.open(s.namefilestudent, ios::out|ios::app);
 	string stt, ms, ho, ten, gt, sn, cccd;
 	node* temp1 = new node;
 	node* temp = l[k].head;
 	while (l[k].head->next != NULL) {
 		l[k].head = l[k].head->next;
 	}
-	int n = stoi(temp->s->no);
+	int n = stoi(l[k].head->s->no);
 	n++;
 	temp1->s = new student;
 	temp1->s->no = to_string(n);
@@ -499,13 +501,22 @@ void addastudent(int k,list*& l) {
 	l[k].head->next = temp1;
 	temp1->next = NULL;
 	l[k].head = temp;
+	f << temp1->s->no << "," << temp1->s->studentid << "," << temp1->s->lname << "," << temp1->s->fname << "," << temp1->s->gender << "," << temp1->s->birth << "," << temp1->s->socialid << endl;
 }
 
-void delstudent(int k, list*& l) {
+void delstudent(int k, list*& l, courses s) {
 	string ms;
 	cout << "student's id need to delete: ";
 	getline(cin, ms);
 	node* temp = l[k].head;
+	fstream f;
+	f.open(s.namefilestudent, ios::out);
+	while (temp != NULL) {
+		if(temp->s->studentid!=ms) 
+			f << temp->s->no << "," << temp->s->studentid << "," << temp->s->lname << "," << temp->s->fname << "," << temp->s->gender << "," << temp->s->birth << "," << temp->s->socialid << endl;
+		temp = temp->next;
+	}
+	temp = l[k].head;
 	if (l[k].head->s->studentid == ms) {
 		node* temp1 = l[k].head;
 		l[k].head = l[k].head->next;
