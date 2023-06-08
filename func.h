@@ -64,3 +64,4 @@ void delstudent(int k, list*& l, courses s);
 void deletecourse(semester& s, list*& l, int k);
 void myinformation(node* temp);
 void changeinfo(node* temp, int k);
+void updatecourse(schoolyear&scy, int q, int a);

@@ -422,8 +422,8 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 }
 
 void listofcourses(schoolyear scy,int q) {
+	cout << "list of courses in this semester: " << endl;
 	for (int i = 1; i <= scy.s[q].numofclass; i++) {
-		cout << "list of courses in this semester: " << endl;
 		cout << i << ") " << scy.s[q].cr[i].namecr << endl;
 	}
 	system("pause");
@@ -508,38 +508,42 @@ void delstudent(int k, list*& l, courses s) {
 	string ms;
 	cout << "student's id need to delete: ";
 	getline(cin, ms);
-	node* temp = l[k].head;
+	node*temp = l[k].head;
 	fstream f;
 	f.open(s.namefilestudent, ios::out);
 	while (temp != NULL) {
-		if(temp->s->studentid!=ms) 
+		if (temp->s->studentid != ms)
 			f << temp->s->no << "," << temp->s->studentid << "," << temp->s->lname << "," << temp->s->fname << "," << temp->s->gender << "," << temp->s->birth << "," << temp->s->socialid << endl;
 		temp = temp->next;
 	}
-	temp = l[k].head;
-	if (l[k].head->s->studentid == ms) {
+	f.close();
+	if (l[k].head!=NULL&&l[k].head->s->studentid == ms) {
 		node* temp1 = l[k].head;
 		l[k].head = l[k].head->next;
 		delete temp1;
 		return;
 	}
 	else {
-		node* temp1 = l[k].head;
-		l[k].head = l[k].head->next;
-		while (l[k].head->next != NULL) {
-			if (l[k].head->s->studentid == ms) {
-				temp1->next = l[k].head->next;
-				l[k].head = temp;
-				return;
-			}
-			temp1 = l[k].head;
+		if (l[k].head != NULL) {
+			node* temp1 = l[k].head;
 			l[k].head = l[k].head->next;
-		}
-		if (l[k].head->s->studentid == ms) {
-			l[k].head = temp1;
-			l[k].head->next = NULL;
-			l[k].head = temp;
-			return;
+			if (l[k].head != NULL) {
+				while (l[k].head->next != NULL) {
+					if (l[k].head->s->studentid == ms) {
+						temp1->next = l[k].head->next;
+						l[k].head = temp;
+						return;
+					}
+					temp1 = l[k].head;
+					l[k].head = l[k].head->next;
+				}
+				if (l[k].head->s->studentid == ms) {
+					l[k].head = temp1;
+					l[k].head->next = NULL;
+					l[k].head = temp;
+					return;
+				}
+			}
 		}
 	}
 }
@@ -621,5 +625,70 @@ void changeinfo(node* temp, int k) {
 		temp->y->birth = ns;
 		cout << "change your birth successfully" << endl;
 		return;
+	}
+}
+
+void updatecourse(schoolyear&scy, int q, int a) {
+	cout << "1) id course: " << scy.s[q].cr[a].id << endl;
+	cout << "2) name course: " << scy.s[q].cr[a].namecr << endl;
+	cout << "3) class name: " << scy.s[q].cr[a].clsname << endl;
+	cout << "4) teacher name: " << scy.s[q].cr[a].teachername << endl;
+	cout << "5) number of credits: " << scy.s[q].cr[a].nocre << endl;
+	cout << "6) day and the session that the course will be performed: " << scy.s[q].cr[a].dow << endl;
+	cout << "you want to update(input 0 to stop update): ";
+	int x;
+	string temp;
+	cin >> x;
+	while (x != 0) {
+		switch (x) {
+		case 1: {
+			cout << "new id course: ";
+			cin.ignore();
+			getline(cin, temp);
+			scy.s[q].cr[a].id = temp;
+			break;
+		}
+		case 2: {
+			cout << "new name course: ";
+			cin.ignore();
+			getline(cin, temp);
+			scy.s[q].cr[a].namecr = temp;
+			temp += ".csv";
+			const char* oldname = scy.s[q].cr[a].namefilestudent.c_str();
+			const char* newname = temp.c_str();
+			rename(oldname, newname);
+			break;
+		}
+		case 3: {
+			cout << "new class name: ";
+			cin.ignore();
+			getline(cin, temp);
+			scy.s[q].cr[a].clsname = temp;
+			break;
+		}
+		case 4: {
+			cout << "new teacher name: ";
+			cin.ignore();
+			getline(cin, temp);
+			scy.s[q].cr[a].teachername = temp;
+			break;
+		}
+		case 5: {
+			cout << "new number of credits: ";
+			cin.ignore();
+			getline(cin, temp);
+			scy.s[q].cr[a].nocre = temp;
+			break;
+		}
+		case 6: {
+			cout << "new day and the session that the course will be performed: ";
+			cin.ignore();
+			getline(cin, temp);
+			scy.s[q].cr[a].dow = temp;
+			break;
+		}
+		}
+		cout << "you want to update(input 0 to stop update): ";
+		cin >> x;
 	}
 }

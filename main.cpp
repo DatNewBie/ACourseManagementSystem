@@ -21,10 +21,11 @@ int main() {
 			cout << "5) create a semester" << endl;
 			cout << "6) add a course to this semester" << endl;
 			cout << "7) view list of courses" << endl;
-			cout << "8) add a student to the course" << endl;
-			cout << "9) remove a student from the course" << endl;
-			cout << "10) delete a course" << endl;
-			cout << "number of order: ";
+			cout << "8) update course information" << endl;
+			cout << "9) add a student to the course" << endl;
+			cout << "10) remove a student from the course" << endl;
+			cout << "11) delete a course" << endl;
+			cout << "your choice: ";
 			cin >> x;
 			while (x != 0) {
 				switch (x) {
@@ -46,7 +47,7 @@ int main() {
 							cout << "3) change first name" << endl;
 							cout << "4) change gender" << endl;
 							cout << "5) change birth" << endl;
-							cout << "number of order: " << endl;
+							cout << "your choice: " << endl;
 							int l;
 							cin >> l;
 							while (l != 0) {
@@ -117,7 +118,12 @@ int main() {
 					break;
 				}
 				case 8: {
-
+					listofcourses(scy, q);
+					cout << "number of course which you want to update information: ";
+					int a;
+					cin >> a;
+					updatecourse(scy, q, a);
+					break;
 				}
 				}
 				system("cls");
@@ -129,9 +135,10 @@ int main() {
 				cout << "5) create a semester" << endl;
 				cout << "6) add a course to this semester" << endl;
 				cout << "7) view list of courses" << endl;
-				cout << "8) add a student to the course" << endl;
-				cout << "9) remove a student from the course" << endl;
-				cout << "10) delete a course" << endl;
+				cout << "8) update course information" << endl;
+				cout << "9) add a student to the course" << endl;
+				cout << "10) remove a student from the course" << endl;
+				cout << "11) delete a course" << endl;
 				cout << "your choice: ";
 				cin >> x;
 			}
