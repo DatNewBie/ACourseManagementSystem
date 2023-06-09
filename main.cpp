@@ -25,6 +25,8 @@ int main() {
 			cout << "9) add a student to the course" << endl;
 			cout << "10) remove a student from the course" << endl;
 			cout << "11) delete a course" << endl;
+			cout << "12) view list of classes" << endl;
+			cout << "13) view list of student" << endl;
 			cout << "your choice: ";
 			cin >> x;
 			while (x != 0) {
@@ -125,6 +127,64 @@ int main() {
 					updatecourse(scy, q, a);
 					break;
 				}
+				case 9: {
+					listofcourses(scy, q);
+					cout << "number of course which you want to add a student: ";
+					int a;
+					cin >> a;
+					addastudent(a, l, scy.s[q].cr[a]);
+					break;
+				}
+				case 10: {
+					listofcourses(scy, q);
+					cout << "number of course which you want to remove a student: ";
+					int a;
+					cin >> a;
+					delstudent(a, l, scy.s[q].cr[a]);
+					break;
+				}
+				case 11: {
+					listofcourses(scy, q);
+					cout << "number of course which you want to delete: ";
+					int a;
+					cin >> a;
+					deletecourse(scy.s[q], l, a);
+					break;
+				}
+				case 12: {
+					listofclasses(scy, q);
+					break;
+				}
+				case 13: {
+					cout << "0) exit" << endl;
+					cout << "1) view list of student in class" << endl;
+					cout << "2) view list of student in course" << endl;
+					int k;
+					cout << "your choice: ";
+					cin >> k;
+					while (k != 0) {
+						switch (k) {
+						case 1: {
+							listofclasses(scy, q);
+							cout << "number of class: ";
+							int l;
+							cin >> l;
+							viewlistofstudent(scy, k, l, q);
+							break;
+						}
+						case 2: {
+							listofcourses(scy, q);
+							cout << "number of course: ";
+							int l;
+							cin >> l;
+							viewlistofstudent(scy, k, l, q);
+							break;
+						}
+						}
+						cout << "your choice: ";
+						cin >> k;
+					}
+				}
 				}
 				system("cls");
 				cout << "0) log out" << endl;
@@ -139,6 +199,8 @@ int main() {
 				cout << "9) add a student to the course" << endl;
 				cout << "10) remove a student from the course" << endl;
 				cout << "11) delete a course" << endl;
+				cout << "12) view list of classes" << endl;
+				cout << "13) view list of student" << endl;
 				cout << "your choice: ";
 				cin >> x;
 			}

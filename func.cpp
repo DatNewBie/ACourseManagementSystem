@@ -502,6 +502,7 @@ void addastudent(int k,list*& l, courses s) {
 	temp1->next = NULL;
 	l[k].head = temp;
 	f << temp1->s->no << "," << temp1->s->studentid << "," << temp1->s->lname << "," << temp1->s->fname << "," << temp1->s->gender << "," << temp1->s->birth << "," << temp1->s->socialid << endl;
+	f.close();
 }
 
 void delstudent(int k, list*& l, courses s) {
@@ -549,6 +550,8 @@ void delstudent(int k, list*& l, courses s) {
 }
 
 void deletecourse(semester& s, list*& l, int k) {
+	const char* fileremove = s.cr[k].namefilestudent.c_str();
+	int result = remove(fileremove);
 	for (int i = k; i <= s.numofclass; i++) {
 		l[i].head = l[i + 1].head;
 	}
@@ -656,7 +659,7 @@ void updatecourse(schoolyear&scy, int q, int a) {
 			temp += ".csv";
 			const char* oldname = scy.s[q].cr[a].namefilestudent.c_str();
 			const char* newname = temp.c_str();
-			rename(oldname, newname);
+			int result = rename(oldname, newname);
 			break;
 		}
 		case 3: {
@@ -691,4 +694,42 @@ void updatecourse(schoolyear&scy, int q, int a) {
 		cout << "you want to update(input 0 to stop update): ";
 		cin >> x;
 	}
+}
+
+
+void listofclasses(schoolyear scy, int q) {
+	cout << "list of classes: " << endl;
+	for (int i = 1; i <= scy.quantity; i++) {
+		cout << i << ") " << scy.c[i].name << endl;
+	}
+}
+
+void viewlistofstudent(schoolyear scy, int k, int l,int q) {
+	ifstream f;
+	string temp;
+	if (k == 1) {
+		cout << "list of student in class:" << scy.c[l].name << endl;
+		f.open(scy.c[l].namefile, ios::in);
+		while (!f.eof()) {
+			getline(f, temp);
+			if (f.eof()) {
+				f.close();
+				return;
+			}
+			cout << temp << endl;
+		}
+	}
+	if (k == 2) {
+		cout << "list of student in course: " << scy.s[q].cr[l].namecr << endl;
+		f.open(scy.s[q].cr[l].namefilestudent, ios::in);
+		while (!f.eof()) {
+			getline(f, temp);
+			if (f.eof()) {
+				f.close();
+				return;
+			}
+			cout << temp << endl;
+		}
+	}
+	f.close();
 }
