@@ -6,7 +6,8 @@
 using namespace std;
 
 struct courses {
-	string id, namecr, clsname, teachername, dow, namefilestudent, nocre;
+	string id, namecr, clsname, teachername, dow, namefilestudent, nocre,scoreboard;
+	bool publishscore;
 };
 
 struct semester {
@@ -30,6 +31,7 @@ struct schoolyear {
 struct student {
 	string fname, lname, gender, birth, socialid, no, studentid,password;
 	bool staff;
+	int ttmark, fnmark, mtmark, omark;
 };
 
 struct staff {
@@ -67,3 +69,6 @@ void myinformation(node* temp);
 void changeinfo(node* temp, int k);
 void listofclasses(schoolyear scy, int q);
 void viewlistofstudent(schoolyear scy, int k, int l,int q);
+void exportscoreboard(schoolyear scy,  list* l, int q, int a);
+void viewscoreboard(schoolyear scy, int q, int a);
+void updateresult(schoolyear scy,list*& l,int q, int a);

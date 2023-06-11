@@ -696,7 +696,6 @@ void updatecourse(schoolyear&scy, int q, int a) {
 	}
 }
 
-
 void listofclasses(schoolyear scy, int q) {
 	cout << "list of classes: " << endl;
 	for (int i = 1; i <= scy.quantity; i++) {
@@ -729,6 +728,122 @@ void viewlistofstudent(schoolyear scy, int k, int l,int q) {
 				return;
 			}
 			cout << temp << endl;
+		}
+	}
+	f.close();
+}
+
+void exportscoreboard(schoolyear scy,  list* l, int q, int a) {
+	fstream f;
+	scy.s[q].cr[a].scoreboard = scy.s[q].cr[a].namecr;
+	scy.s[q].cr[a].scoreboard += "scoreboard.csv";
+	f.open(scy.s[q].cr[a].scoreboard, ios::out);
+	f << "No,Student ID,Student Full Name,Total Mark,Final Mark,Midterm Mark,Other Mark" << endl;
+	node* temp = l[a].head;
+	while (temp != NULL) {
+		f << l[a].head->s->no << "," << l[a].head->s->studentid << "," << l[a].head->s->lname << " " << l[a].head->s->fname << "," << endl;
+		temp = temp->next;
+	}
+	f.close();
+}
+
+void viewscoreboard(schoolyear scy, int q, int a) {
+	fstream f;
+	string temp;
+	f.open(scy.s[q].cr[a].scoreboard, ios::in);
+	if (!f.is_open()) cout << "The scoreboard of this course does not exist" << endl;
+	else {
+		while (!f.eof()) {
+			getline(f, temp);
+			if (f.eof()) {
+				f.close();
+				return;
+			}
+			cout << temp << endl;
+		}
+	}
+	f.close();
+}
+
+void updateresult(schoolyear scy, list*& l, int q, int a) {
+	fstream f;
+	f.open(scy.s[q].cr[a].scoreboard, ios::in);
+	if (!f.is_open()) {
+		cout << "The scoreboard of this course does not exist" << endl;
+		return;
+	}
+	else {
+		if (l[a].head->s->ttmark = NULL) {
+			node* temp1 = l[a].head;
+			string temp;
+			getline(f, temp);
+			while (!f.eof() && l[a].head != NULL) {
+				getline(f, temp);
+				int c = 0;
+				for (int i = 0; i < temp.length(); i++) {
+					if (temp[i] == ',') c++;
+					if (c == 3) {
+						i++;
+						string t;
+						while (temp[i] != ',') {
+							t += temp[i];
+							i++;
+						}
+						l[a].head->s->ttmark = stoi(t);
+						t = "";
+						i++;
+						while (temp[i] != ',') {
+							t += temp[i];
+							i++;
+						}
+						l[a].head->s->fnmark = stoi(t);
+						t = "";
+						i++;
+						while (temp[i] != ',') {
+							t += temp[i];
+							i++;
+						}
+						l[a].head->s->mtmark = stoi(t);
+						t = "";
+						i++;
+						while (i < temp.length()) {
+							t += temp[i];
+							i++;
+						}
+						l[a].head->s->omark = stoi(t);
+						break;
+					}
+				}
+				l[a].head = l[a].head->next;
+			}
+			l[a].head = temp1;
+		}
+		else {
+			string ms;
+			cout << "input student id: ";
+			cin >> ms;
+			int dem = 0;
+			while (l[a].head != NULL) {
+				if (l[a].head->s->studentid == ms) {
+					cout << "student id: " << ms << endl;
+					cout << "name: " << l[a].head->s->lname << " " << l[a].head->s->fname << endl;
+					cout << "total mark: " << l[a].head->s->ttmark << endl;
+					cout << "final mark: " << l[a].head->s->fnmark << endl;
+					cout << "midterm mark: " << l[a].head->s->mtmark << endl;
+					cout << "other mark: " << l[a].head->s->omark << endl;
+					break;
+				}
+				l[a].head = l[a].head->next;
+			}
+			if (l[a].head == NULL) {
+				cout << "student id does not exist" << endl;
+				return;
+			}
+			else {
+				cout << endl;
+				cout << "0) exit" << endl;
+				cout<<"1) update total mark:"
+			}
 		}
 	}
 	f.close();

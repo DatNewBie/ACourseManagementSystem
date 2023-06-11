@@ -27,6 +27,9 @@ int main() {
 			cout << "11) delete a course" << endl;
 			cout << "12) view list of classes" << endl;
 			cout << "13) view list of student" << endl;
+			cout << "14) export the scoreboard of a course" << endl;
+			cout << "15) view the scoreboard of a course" << endl;
+			cout << "16) update a student's result" << endl;
 			cout << "your choice: ";
 			cin >> x;
 			while (x != 0) {
@@ -185,6 +188,25 @@ int main() {
 						cin >> k;
 					}
 				}
+				case 14: {
+					listofcourses(scy, q);
+					cout << "your choice: ";
+					int a;
+					cin >> a;
+					exportscoreboard(scy, l, q, a);
+					break;
+				}
+				case 15: {
+					listofcourses(scy, q);
+					cout << "your choice: ";
+					int a;
+					cin >> a;
+					viewscoreboard(scy, q, a);
+					break;
+				}
+				case 16: {
+
+				}
 				}
 				system("cls");
 				cout << "0) log out" << endl;
@@ -201,6 +223,9 @@ int main() {
 				cout << "11) delete a course" << endl;
 				cout << "12) view list of classes" << endl;
 				cout << "13) view list of student" << endl;
+				cout << "14) export the scoreboard of a course" << endl;
+				cout << "15) view a scoreboard of a course" << endl;
+				cout << "16) update a student's result" << endl;
 				cout << "your choice: ";
 				cin >> x;
 			}
