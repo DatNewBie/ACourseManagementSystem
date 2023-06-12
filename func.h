@@ -6,13 +6,13 @@
 using namespace std;
 
 struct courses {
-	string id, namecr, clsname, teachername, dow, namefilestudent, nocre,scoreboard;
-	bool publishscore;
+	string id, namecr, clsname, teachername, dow, namefilestudent, nocre, scoreboard = "ScoreBoard\\";
+	bool publishscore = false;
 };
 
 struct semester {
-	string startdate, enddate;
-	courses *cr;
+	string startdate{}, enddate{};
+	courses* cr;
 	int numofclass = 0;
 };
 
@@ -22,21 +22,21 @@ struct classes {
 };
 
 struct schoolyear {
-	string name;
+	string name{};
 	int quantity = 0;
 	classes *c;
 	semester s[4];
 };
 
 struct student {
-	string fname, lname, gender, birth, socialid, no, studentid,password;
-	bool staff;
-	int ttmark, fnmark, mtmark, omark;
+	string fname, lname, gender, birth, socialid, no, studentid, password;
+	bool staf = false;
+	int ttmark = NULL, fnmark = NULL, mtmark = NULL, omark = NULL;
 };
 
 struct staff {
-	string id, password, lname, fname, gender,birth;
-	bool staff;
+	string id, password, lname, fname, gender, birth;
+	bool staf = true;
 };
 
 struct node {

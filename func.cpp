@@ -4,7 +4,7 @@ void init(list*& p) {
 	fstream f;
 	string ms, mk, ho, ten, gt,sn;
 	string details;
-	f.open("staffaccount.txt", ios::in);
+	f.open("Account\\staffaccount.csv", ios::in);
 	getline(f, details);
 	p = new list;
 	p->head = new node;
@@ -54,7 +54,7 @@ void init(list*& p) {
 													i++;
 													while (i < details.size()) {
 														if (details[i] != 44) {
-															p->head->y->staff = true;
+															p->head->y->staf = true;
 															i++;
 														}
 														else i = details.size();
@@ -119,7 +119,7 @@ void init(list*& p) {
 														i++;
 														while (i < details.size()) {
 															if (details[i] != 44) {
-																p->head->y->staff = true;
+																p->head->y->staf = true;
 																i++;
 															}
 															else  i = details.size();
@@ -332,12 +332,12 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 			}
 		}
 	}
-	l[scy.s[k].numofclass].head->s->staff = false;
+	l[scy.s[k].numofclass].head->s->staf = false;
 	l[scy.s[k].numofclass].head->s->password="123456@";
 	node* p = new node;
 	fstream f2;
-	f2.open("studentaccount.txt", ios::app);
-	f2 << endl<< l[scy.s[k].numofclass].head->s->studentid << "," << l[scy.s[k].numofclass].head->s->password << "," << l[scy.s[k].numofclass].head->s->lname << "," << l[scy.s[k].numofclass].head->s->fname << "," << l[scy.s[k].numofclass].head->s->gender << "," << l[scy.s[k].numofclass].head->s->staff << endl;
+	f2.open("Account\\studentaccount.csv", ios::app);
+	f2 << endl << l[scy.s[k].numofclass].head->s->studentid << "," << l[scy.s[k].numofclass].head->s->password << "," << l[scy.s[k].numofclass].head->s->lname << "," << l[scy.s[k].numofclass].head->s->fname << "," << l[scy.s[k].numofclass].head->s->gender << "," << l[scy.s[k].numofclass].head->s->birth << "," << l[scy.s[k].numofclass].head->s->staf << endl;
 	p = l[scy.s[k].numofclass].head;
 	while (!f.eof()) {
 		getline(f, details);
@@ -405,7 +405,7 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 			}
 		}
 		p = addelements(p, stt, mssv,ho, ten, gt, sinhnhat, cccd);
-		f2 << mssv << "," << "123456@" << "," << ho << "," << ten << "," << gt << "," << "0" << endl;
+		f2 << mssv << "," << "123456@" << "," << ho << "," << ten << "," << gt << "," << sinhnhat << ",0" << endl;
 		stt = "";
 		mssv = "";
 		ten = "";
@@ -440,7 +440,7 @@ node* createnode(string stt, string mssv,string ho, string ten, string gt, strin
 	temp1->s->gender = gt;
 	temp1->s->birth = sinhnhat;
 	temp1->s->socialid = cccd;
-	temp1->s->staff = false;
+	temp1->s->staf = false;
 	temp1->s->password = "123456@";
 	return temp1;
 }
@@ -461,7 +461,7 @@ node* createnode1(string ms, string mk, string ho, string ten, string gt,string 
 	temp1->y->fname = ten;
 	temp1->y->gender = gt;
 	temp1->y->birth = sn;
-	temp1->y->staff = true;
+	temp1->y->staf = true;
 	return temp1;
 }
 
@@ -484,6 +484,7 @@ void addastudent(int k,list*& l, courses s) {
 	n++;
 	temp1->s = new student;
 	temp1->s->no = to_string(n);
+	cin.ignore();
 	cout << "id: ";
 	getline(cin, temp1->s->studentid);
 	cout << "last name: ";
@@ -497,26 +498,33 @@ void addastudent(int k,list*& l, courses s) {
 	cout << "social id: ";
 	getline(cin, temp1->s->socialid);
 	temp1->s->password = "123456@";
-	temp1->s->staff = false;
+	temp1->s->staf = false;
 	l[k].head->next = temp1;
 	temp1->next = NULL;
 	l[k].head = temp;
 	f << temp1->s->no << "," << temp1->s->studentid << "," << temp1->s->lname << "," << temp1->s->fname << "," << temp1->s->gender << "," << temp1->s->birth << "," << temp1->s->socialid << endl;
+	fstream f1;
+	f1.open("Account\\studentaccount.csv", ios::app);
+	f1 << temp1->s->studentid << "," << "123456@" << "," << temp1->s->lname << "," << temp1->s->fname << "," << temp1->s->gender << "," << temp1->s->birth << "," << temp1->s->staf << endl;
 	f.close();
+	f1.close();
 }
 
 void delstudent(int k, list*& l, courses s) {
 	string ms;
 	cout << "student's id need to delete: ";
+	cin.ignore();
 	getline(cin, ms);
 	node*temp = l[k].head;
 	fstream f;
 	f.open(s.namefilestudent, ios::out);
+	f << "No,Student ID,Last name,First name,Gender,Date of Birth,Social ID,Academic year" << endl;
 	while (temp != NULL) {
 		if (temp->s->studentid != ms)
 			f << temp->s->no << "," << temp->s->studentid << "," << temp->s->lname << "," << temp->s->fname << "," << temp->s->gender << "," << temp->s->birth << "," << temp->s->socialid << endl;
 		temp = temp->next;
 	}
+	temp = l[k].head;
 	f.close();
 	if (l[k].head!=NULL&&l[k].head->s->studentid == ms) {
 		node* temp1 = l[k].head;
@@ -563,7 +571,7 @@ void myinformation(node* temp) {
 	cout << "name :" << temp->y->lname << " " << temp->y->fname << endl;
 	cout << "gender: " << temp->y->gender << endl;
 	cout << "birth: " << temp->y->birth << endl;
-	if(temp->y->staff==true) cout << "staff: true" << endl << endl;
+	if(temp->y->staf==true) cout << "staff: true" << endl << endl;
 	else cout << "staff: false" << endl << endl;
 }
 
@@ -735,7 +743,7 @@ void viewlistofstudent(schoolyear scy, int k, int l,int q) {
 
 void exportscoreboard(schoolyear scy,  list* l, int q, int a) {
 	fstream f;
-	scy.s[q].cr[a].scoreboard = scy.s[q].cr[a].namecr;
+	scy.s[q].cr[a].scoreboard += scy.s[q].cr[a].namecr;
 	scy.s[q].cr[a].scoreboard += "scoreboard.csv";
 	f.open(scy.s[q].cr[a].scoreboard, ios::out);
 	f << "No,Student ID,Student Full Name,Total Mark,Final Mark,Midterm Mark,Other Mark" << endl;
@@ -842,7 +850,51 @@ void updateresult(schoolyear scy, list*& l, int q, int a) {
 			else {
 				cout << endl;
 				cout << "0) exit" << endl;
-				cout<<"1) update total mark:"
+				cout << "1) update total mark" << endl;
+				cout << "2) update final mark" << endl;
+				cout << "3) update midterm mark" << endl;
+				cout << "4) update other mark" << endl;
+				cout << "your choice: ";
+				int x;
+				cin >> x;
+				while (x != 0) {
+					switch (x) {
+					case 1: {
+						cout << "new total mark: ";
+						int diem;
+						cin >> diem;
+						l[a].head->s->ttmark = diem;
+						cout << "update new total mark successfully" << endl;
+						break;
+					}
+					case 2: {
+						cout << "new final mark: ";
+						int diem;
+						cin >> diem;
+						l[a].head->s->fnmark = diem;
+						cout << "update final mark successfully" << endl;
+						break;
+					}
+					case 3: {
+						cout << "new midterm mark: ";
+						int diem;
+						cin >> diem;
+						l[a].head->s->mtmark = diem;
+						cout << "update midterm mark successfully" << endl;
+						break;
+					}
+					case 4: {
+						cout << "new other mark: ";
+						int diem;
+						cin >> diem;
+						l[a].head->s->omark = diem;
+						cout << "update other mark successfully" << endl;
+						break;
+					}
+					}
+					cout << "your choice: ";
+					cin >> x;
+				}
 			}
 		}
 	}

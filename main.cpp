@@ -3,7 +3,7 @@
 int main() {
 	string tk, mk;
 	int i = -1, x, q = 1;
-	list* l, * p;
+	list* l = new list, * p = new list;
 	schoolyear scy;
 	init(p);
 	while (i != 0) {
@@ -30,6 +30,7 @@ int main() {
 			cout << "14) export the scoreboard of a course" << endl;
 			cout << "15) view the scoreboard of a course" << endl;
 			cout << "16) update a student's result" << endl;
+			cout << "17) view the scoreboard of a class" << endl;
 			cout << "your choice: ";
 			cin >> x;
 			while (x != 0) {
@@ -184,9 +185,13 @@ int main() {
 							break;
 						}
 						}
+						cout << "0) exit" << endl;
+						cout << "1) view list of student in class" << endl;
+						cout << "2) view list of student in course" << endl;
 						cout << "your choice: ";
 						cin >> k;
 					}
+					break;
 				}
 				case 14: {
 					listofcourses(scy, q);
@@ -226,6 +231,7 @@ int main() {
 				cout << "14) export the scoreboard of a course" << endl;
 				cout << "15) view a scoreboard of a course" << endl;
 				cout << "16) update a student's result" << endl;
+				cout << "17) view the scoreboard of a class" << endl;
 				cout << "your choice: ";
 				cin >> x;
 			}
