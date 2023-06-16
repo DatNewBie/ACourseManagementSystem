@@ -560,8 +560,11 @@ void delstudent(int k, list*& l, courses s) {
 void deletecourse(semester& s, list*& l, int k) {
 	const char* fileremove = s.cr[k].namefilestudent.c_str();
 	int result = remove(fileremove);
-	for (int i = k; i <= s.numofclass; i++) {
+	for (int i = k; i < s.numofclass; i++) {
 		l[i].head = l[i + 1].head;
+	}
+	for (int i = k; i < s.numofclass; i++) {
+		s.cr[i] = s.cr[i + 1];
 	}
 	s.numofclass--;
 }
@@ -748,6 +751,7 @@ void exportscoreboard(schoolyear scy,  list* l, int q, int a) {
 	f.open(scy.s[q].cr[a].scoreboard, ios::out);
 	f << "No,Student ID,Student Full Name,Total Mark,Final Mark,Midterm Mark,Other Mark" << endl;
 	node* temp = l[a].head;
+	// sua lai thanh temp
 	while (temp != NULL) {
 		f << l[a].head->s->no << "," << l[a].head->s->studentid << "," << l[a].head->s->lname << " " << l[a].head->s->fname << "," << endl;
 		temp = temp->next;
