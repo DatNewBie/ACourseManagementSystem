@@ -5,8 +5,8 @@ int main() {
 	int i = -1, x, q = 1;
 	list* l = new list, * p = new list;
 	schoolyear scy;
-	init(p);
 	while (i != 0) {
+		init(p);
 		cout << "user name: ";
 		cin >> tk;
 		cout << "password: ";
@@ -210,7 +210,12 @@ int main() {
 					break;
 				}
 				case 16: {
-
+					listofcourses(scy, q);
+					cout << "your choice: ";
+					int a;
+					cin >> a;
+					updateresult(scy, l, q, a);
+					break;
 				}
 				}
 				system("cls");

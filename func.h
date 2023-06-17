@@ -31,7 +31,7 @@ struct schoolyear {
 struct student {
 	string fname, lname, gender, birth, socialid, no, studentid, password;
 	bool staf = false;
-	int ttmark = NULL, fnmark = NULL, mtmark = NULL, omark = NULL;
+	float ttmark = NULL, fnmark = NULL, mtmark = NULL, omark = NULL;
 };
 
 struct staff {

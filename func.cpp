@@ -751,9 +751,8 @@ void exportscoreboard(schoolyear scy,  list* l, int q, int a) {
 	f.open(scy.s[q].cr[a].scoreboard, ios::out);
 	f << "No,Student ID,Student Full Name,Total Mark,Final Mark,Midterm Mark,Other Mark" << endl;
 	node* temp = l[a].head;
-	// sua lai thanh temp
 	while (temp != NULL) {
-		f << l[a].head->s->no << "," << l[a].head->s->studentid << "," << l[a].head->s->lname << " " << l[a].head->s->fname << "," << endl;
+		f << temp->s->no << "," << temp->s->studentid << "," << temp->s->lname << " " << temp->s->fname << "," << endl;
 		temp = temp->next;
 	}
 	f.close();
@@ -769,6 +768,7 @@ void viewscoreboard(schoolyear scy, int q, int a) {
 			getline(f, temp);
 			if (f.eof()) {
 				f.close();
+				system("pause");
 				return;
 			}
 			cout << temp << endl;
@@ -779,13 +779,14 @@ void viewscoreboard(schoolyear scy, int q, int a) {
 
 void updateresult(schoolyear scy, list*& l, int q, int a) {
 	fstream f;
+	node* temp2 = l[a].head;
 	f.open(scy.s[q].cr[a].scoreboard, ios::in);
 	if (!f.is_open()) {
 		cout << "The scoreboard of this course does not exist" << endl;
 		return;
 	}
 	else {
-		if (l[a].head->s->ttmark = NULL) {
+		if (l[a].head->s->ttmark == NULL) {
 			node* temp1 = l[a].head;
 			string temp;
 			getline(f, temp);
@@ -801,28 +802,28 @@ void updateresult(schoolyear scy, list*& l, int q, int a) {
 							t += temp[i];
 							i++;
 						}
-						l[a].head->s->ttmark = stoi(t);
+						l[a].head->s->ttmark = stof(t);
 						t = "";
 						i++;
 						while (temp[i] != ',') {
 							t += temp[i];
 							i++;
 						}
-						l[a].head->s->fnmark = stoi(t);
+						l[a].head->s->fnmark = stof(t);
 						t = "";
 						i++;
 						while (temp[i] != ',') {
 							t += temp[i];
 							i++;
 						}
-						l[a].head->s->mtmark = stoi(t);
+						l[a].head->s->mtmark = stof(t);
 						t = "";
 						i++;
 						while (i < temp.length()) {
 							t += temp[i];
 							i++;
 						}
-						l[a].head->s->omark = stoi(t);
+						l[a].head->s->omark = stof(t);
 						break;
 					}
 				}
@@ -830,76 +831,83 @@ void updateresult(schoolyear scy, list*& l, int q, int a) {
 			}
 			l[a].head = temp1;
 		}
+		f.close();
+		string ms;
+		cout << "input student id: ";
+		cin >> ms;
+		int dem = 0;
+		while (l[a].head != NULL) {
+			if (l[a].head->s->studentid == ms) {
+				cout << "student id: " << ms << endl;
+				cout << "name: " << l[a].head->s->lname << " " << l[a].head->s->fname << endl;
+				cout << "total mark: " << l[a].head->s->ttmark << endl;
+				cout << "final mark: " << l[a].head->s->fnmark << endl;
+				cout << "midterm mark: " << l[a].head->s->mtmark << endl;
+				cout << "other mark: " << l[a].head->s->omark << endl;
+				break;
+			}
+			l[a].head = l[a].head->next;
+		}
+		if (l[a].head == NULL) {
+			cout << "student id does not exist" << endl;
+			l[a].head = temp2;
+			return;
+		}
 		else {
-			string ms;
-			cout << "input student id: ";
-			cin >> ms;
-			int dem = 0;
-			while (l[a].head != NULL) {
-				if (l[a].head->s->studentid == ms) {
-					cout << "student id: " << ms << endl;
-					cout << "name: " << l[a].head->s->lname << " " << l[a].head->s->fname << endl;
-					cout << "total mark: " << l[a].head->s->ttmark << endl;
-					cout << "final mark: " << l[a].head->s->fnmark << endl;
-					cout << "midterm mark: " << l[a].head->s->mtmark << endl;
-					cout << "other mark: " << l[a].head->s->omark << endl;
+			cout << endl;
+			cout << "0) exit" << endl;
+			cout << "1) update total mark" << endl;
+			cout << "2) update final mark" << endl;
+			cout << "3) update midterm mark" << endl;
+			cout << "4) update other mark" << endl;
+			cout << "your choice: ";
+			int x;
+			cin >> x;
+			while (x != 0) {
+				switch (x) {
+				case 1: {
+					cout << "new total mark: ";
+					float diem;
+					cin >> diem;
+					l[a].head->s->ttmark = diem;
+					cout << "update new total mark successfully" << endl;
 					break;
 				}
-				l[a].head = l[a].head->next;
-			}
-			if (l[a].head == NULL) {
-				cout << "student id does not exist" << endl;
-				return;
-			}
-			else {
-				cout << endl;
-				cout << "0) exit" << endl;
-				cout << "1) update total mark" << endl;
-				cout << "2) update final mark" << endl;
-				cout << "3) update midterm mark" << endl;
-				cout << "4) update other mark" << endl;
-				cout << "your choice: ";
-				int x;
-				cin >> x;
-				while (x != 0) {
-					switch (x) {
-					case 1: {
-						cout << "new total mark: ";
-						int diem;
-						cin >> diem;
-						l[a].head->s->ttmark = diem;
-						cout << "update new total mark successfully" << endl;
-						break;
-					}
-					case 2: {
-						cout << "new final mark: ";
-						int diem;
-						cin >> diem;
-						l[a].head->s->fnmark = diem;
-						cout << "update final mark successfully" << endl;
-						break;
-					}
-					case 3: {
-						cout << "new midterm mark: ";
-						int diem;
-						cin >> diem;
-						l[a].head->s->mtmark = diem;
-						cout << "update midterm mark successfully" << endl;
-						break;
-					}
-					case 4: {
-						cout << "new other mark: ";
-						int diem;
-						cin >> diem;
-						l[a].head->s->omark = diem;
-						cout << "update other mark successfully" << endl;
-						break;
-					}
-					}
-					cout << "your choice: ";
-					cin >> x;
+				case 2: {
+					cout << "new final mark: ";
+					float diem;
+					cin >> diem;
+					l[a].head->s->fnmark = diem;
+					cout << "update final mark successfully" << endl;
+					break;
 				}
+				case 3: {
+					cout << "new midterm mark: ";
+					float diem;
+					cin >> diem;
+					l[a].head->s->mtmark = diem;
+					cout << "update midterm mark successfully" << endl;
+					break;
+				}
+				case 4: {
+					cout << "new other mark: ";
+					float diem;
+					cin >> diem;
+					l[a].head->s->omark = diem;
+					cout << "update other mark successfully" << endl;
+					break;
+				}
+				}
+				cout << "your choice: ";
+				cin >> x;
 			}
+		}
+		l[a].head = temp2;
+		f.open(scy.s[q].cr[a].scoreboard, ios::out);
+		f << "No,Student ID,Student Full Name,Total Mark,Final Mark,Midterm Mark,Other Mark" << endl;
+		while (temp2 != NULL) {
+			f << temp2->s->no << "," << temp2->s->studentid << "," << temp2->s->lname << " " << temp2->s->fname << "," <<temp2->s->ttmark<<","<< temp2->s->fnmark<<","<< temp2->s->mtmark<<","<< temp2->s->omark<<endl;
+			temp2 = temp2->next;
 		}
 	}
 	f.close();
