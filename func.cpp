@@ -912,3 +912,102 @@ void updateresult(schoolyear scy, list*& l, int q, int a) {
 	}
 	f.close();
 }
+
+void myinformation1(node* temp) {
+	cout << "id: " << temp->s->studentid << endl;
+	cout << "name :" << temp->s->lname << " " << temp->s->fname << endl;
+	cout << "gender: " << temp->s->gender << endl;
+	cout << "birth: " << temp->s->birth << endl;
+	cout << "social id: " << temp->s->socialid << endl;
+	if (temp->s->staf == true) cout << "staff: true" << endl << endl;
+	else cout << "staff: false" << endl << endl;
+}
+
+void changeinfo1(node* temp, int k) {
+	if (k == 1) {
+		string mk;
+		cout << "input your current password: ";
+		cin >> mk;
+		if (mk != temp->s->password) cout << "wrong password" << endl;
+		else {
+			cout << "input your new password: ";
+			cin >> mk;
+			cout << "input your new password again: ";
+			string mk1;
+			cin >> mk1;
+			if (mk == mk1) {
+				temp->s->password = mk;
+				cout << "change password successfully" << endl;
+			}
+			else cout << "password incorrect" << endl;
+		}
+		return;
+	}
+	if (k == 2) {
+		string ho;
+		cout << "input your new last name: ";
+		cin.ignore();
+		getline(cin, ho);
+		temp->s->lname = ho;
+		cout << "change your last name successfully" << endl;
+		return;
+	}
+	if (k == 3) {
+		string ten;
+		cout << "input your new first name: ";
+		cin.ignore();
+		getline(cin, ten);
+		temp->s->fname = ten;
+		cout << "change your first name successfully" << endl;
+		return;
+	}
+	if (k == 4) {
+		int k;
+		cout << "1) male" << endl;
+		cout << "2) female" << endl;
+		cout << "your choice: " << endl;
+		cin >> k;
+		if (k == 1) {
+			temp->s->gender = "male";
+			cout << "change your gender successfully" << endl;
+		}
+		if (k == 2) {
+			temp->s->gender = "female";
+			cout << "change your gender successfully" << endl;
+		}
+		return;
+	}
+	if (k == 5) {
+		string ns;
+		cout << "input your new birth: ";
+		cin >> ns;
+		temp->s->birth = ns;
+		cout << "change your birth successfully" << endl;
+		return;
+	}
+	if (k == 6) {
+		string id;
+		cout << "input your new social id: ";
+		cin >> id;
+		temp->s->socialid = id;
+		cout << "change your social id successfully" << endl;
+		return;
+	}
+}
+
+void viewlistofcourses1(schoolyear scy, int q, list* l, node* temp) {
+	int c = 0;
+	for (int i = 1; i <= scy.s[q].numofclass; i++) {
+		node* temp1 = l[i].head;
+		while (temp1 != NULL) {
+			if (temp1->s->studentid == temp->s->studentid) {
+				cout << c+1 << ") " << scy.s[q].cr[i].namecr << endl;
+				c++;
+				break;
+			}
+			temp1 = temp1->next;
+		}
+	}
+	if (c == 0) cout << "does not exist any courses" << endl;
+	system("pause");
+}

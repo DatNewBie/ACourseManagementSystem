@@ -72,3 +72,6 @@ void viewlistofstudent(schoolyear scy, int k, int l,int q);
 void exportscoreboard(schoolyear scy,  list* l, int q, int a);
 void viewscoreboard(schoolyear scy, int q, int a);
 void updateresult(schoolyear scy,list*& l,int q, int a);
+void myinformation1(node* temp);
+void changeinfo1(node* temp, int k);
+void viewlistofcourses1(schoolyear scy, int q, list* l, node* temp);

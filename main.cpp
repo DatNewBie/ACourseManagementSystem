@@ -6,12 +6,14 @@ int main() {
 	list* l = new list, * p = new list;
 	schoolyear scy;
 	while (i != 0) {
+		system("cls");
 		init(p);
 		cout << "user name: ";
 		cin >> tk;
 		cout << "password: ";
 		cin >> mk;
 		if (loginstaf(tk, mk, p) != NULL) {
+			system("cls");
 			node* temp = loginstaf(tk, mk, p);
 			cout << "0) log out" << endl;
 			cout << "1) my information" << endl;
@@ -57,39 +59,14 @@ int main() {
 							int l;
 							cin >> l;
 							while (l != 0) {
-								switch (l) {
-								case 1: {
-									changeinfo(temp, l);
-									break;
-								}
-								case 2: {
-									changeinfo(temp, l);
-									break;
-								}
-								case 3: {
-									changeinfo(temp, l);
-									break;
-								}
-								case 4: {
-									changeinfo(temp, l);
-									break;
-								}
-								case 5: {
-									changeinfo(temp, l);
-									break;
-								}
-								}
+								changeinfo(temp, l);
 								cout << "your choice: ";
 								cin >> l;
 							}
 						}
 						}
 						system("cls");
-						cout << "id: " << temp->y->id << endl;
-						cout << "name :" << temp->y->lname << " " << temp->y->fname << endl;
-						cout << "gender: " << temp->y->gender << endl;
-						cout << "birth: " << temp->y->birth << endl;
-						cout << "staff: true" << endl << endl;
+						myinformation(temp);
 						cout << "0) back" << endl;
 						cout << "1) change information";
 						cout << "your choice: ";
@@ -241,6 +218,76 @@ int main() {
 				cin >> x;
 			}
 		}
-		else cout << "user name or password incorrect" << endl;
+		else {
+			if (loginstud(tk, mk, l) != NULL) {
+				node* temp = loginstud(tk, mk, l);
+				system("cls");
+				cout << "0) log out" << endl;
+				cout << "1) my information" << endl;
+				cout << "2) view list of courses" << endl;
+				cout << "your choice: ";
+				cin >> x;
+				while (x != 0) {
+					switch (x) {
+					case 1: {
+						system("cls");
+						myinformation1(temp);
+						cout << "0) back" << endl;
+						cout << "1) change information" << endl;
+						cout << "your choice: " << endl;
+						int k;
+						cin >> k;
+						while (k != 0) {
+							if (k == 1) {
+								system("cls");
+								cout << "0) back" << endl;
+								cout << "1) change password" << endl;
+								cout << "2) change last name" << endl;
+								cout << "3) change first name" << endl;
+								cout << "4) change gender" << endl;
+								cout << "5) change birth" << endl;
+								cout << "6) change social id" << endl;
+								cout << "your choice: " << endl;
+								int l;
+								cin >> l;
+								while (l != 0) {
+									changeinfo1(temp, l);
+									cout << "your choice: ";
+									cin >> l;
+								}
+								system("cls");
+								myinformation1(temp);
+								cout << "0) back" << endl;
+								cout << "1) change information" << endl;
+								cout << "your choice: " << endl;
+								cin >> k;
+							}
+						}
+						system("cls");
+						myinformation(temp);
+						cout << "0) back" << endl;
+						cout << "1) change information";
+						cout << "your choice: ";
+						cin >> k;
+						break;
+					}
+					case 2: {
+						viewlistofcourses1(scy, q, l, temp);
+						break;
+					}
+					}
+					system("cls");
+					cout << "0) log out" << endl;
+					cout << "1) my information" << endl;
+					cout << "2) view list of courses" << endl;
+					cout << "your choice: ";
+					cin >> x;
+				}
+			}
+			else {
+				cout << "user name or password incorrect" << endl;
+				system("pause");
+			}
+		}
 	}
 }
