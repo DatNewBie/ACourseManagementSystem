@@ -3,11 +3,11 @@
 int main() {
 	string tk, mk;
 	int i = -1, x, q = 1;
-	list* l = new list, * p = new list;
+	list* l = NULL, * p = new list;
 	schoolyear scy;
+	init(p);
 	while (i != 0) {
 		system("cls");
-		init(p);
 		cout << "user name: ";
 		cin >> tk;
 		cout << "password: ";
@@ -255,20 +255,16 @@ int main() {
 									cout << "your choice: ";
 									cin >> l;
 								}
-								system("cls");
-								myinformation1(temp);
-								cout << "0) back" << endl;
-								cout << "1) change information" << endl;
-								cout << "your choice: " << endl;
-								cin >> k;
+								k = 0;
 							}
+							system("cls");
+							myinformation1(temp);
+							cout << "0) back" << endl;
+							cout << "1) change information" << endl;
+							cout << "your choice: " << endl;
+							int k;
+							cin >> k;
 						}
-						system("cls");
-						myinformation(temp);
-						cout << "0) back" << endl;
-						cout << "1) change information";
-						cout << "your choice: ";
-						cin >> k;
 						break;
 					}
 					case 2: {

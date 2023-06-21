@@ -12,6 +12,7 @@ node* loginstaf(string tk, string mk,list*l) {
 }
 
 node* loginstud(string tk, string mk, list* l) {
+	if (l == NULL) return NULL;
 	node* temp = l[1].head;
 	int i = 1;
 	while (temp != NULL) {
@@ -19,6 +20,7 @@ node* loginstud(string tk, string mk, list* l) {
 			if (temp->s->studentid == tk && temp->s->password == mk) {
 				return temp;
 			}
+			if (temp->s->studentid == tk && temp->s->password != mk) return NULL;
 		}
 		i++;
 		temp = l[i].head;
