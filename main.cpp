@@ -3,7 +3,7 @@
 int main() {
 	string tk, mk;
 	int i = -1, x, q = 1;
-	list* l = NULL, * p = new list;
+	list* l1 = NULL, * l2 = NULL, * l3 = NULL, * p = new list, *l = NULL;
 	schoolyear scy;
 	init(p);
 	while (i != 0) {
@@ -32,7 +32,8 @@ int main() {
 			cout << "14) export the scoreboard of a course" << endl;
 			cout << "15) view the scoreboard of a course" << endl;
 			cout << "16) update a student's result" << endl;
-			cout << "17) view the scoreboard of a class" << endl;
+			cout << "17) publish the scoreboard" << endl;
+			cout << "18) view the scoreboard of a class" << endl;
 			cout << "your choice: ";
 			cin >> x;
 			while (x != 0) {
@@ -94,6 +95,9 @@ int main() {
 				}
 				case 6: {
 					addacourses(scy, q, l);
+					if (q == 1) l1 = l;
+					if (q == 2) l2 = l;
+					if (q == 3) l3 = l;
 					break;
 				}
 				case 7: {
@@ -134,6 +138,7 @@ int main() {
 				}
 				case 12: {
 					listofclasses(scy, q);
+					system("pause");
 					break;
 				}
 				case 13: {
@@ -184,6 +189,7 @@ int main() {
 					int a;
 					cin >> a;
 					viewscoreboard(scy, q, a);
+					system("pause");
 					break;
 				}
 				case 16: {
@@ -192,6 +198,23 @@ int main() {
 					int a;
 					cin >> a;
 					updateresult(scy, l, q, a);
+					break;
+				}
+				case 17: {
+					listofcourses(scy, q);
+					cout << "your choice: ";
+					int a;
+					cin >> a;
+					scy.s[q].cr[a].publishscore = true;
+					break;
+				}
+				case 18: {
+					listofclasses(scy, q);
+					cout << "your choice: ";
+					int a;
+					cin >> a;
+					scoreboardofclass(scy,l, q, a, l1, l2, l3);
+					system("pause");
 					break;
 				}
 				}
@@ -213,7 +236,8 @@ int main() {
 				cout << "14) export the scoreboard of a course" << endl;
 				cout << "15) view a scoreboard of a course" << endl;
 				cout << "16) update a student's result" << endl;
-				cout << "17) view the scoreboard of a class" << endl;
+				cout << "17) publish the scoreboard" << endl;
+				cout << "18) view the scoreboard of a class" << endl;
 				cout << "your choice: ";
 				cin >> x;
 			}
@@ -225,6 +249,7 @@ int main() {
 				cout << "0) log out" << endl;
 				cout << "1) my information" << endl;
 				cout << "2) view list of courses" << endl;
+				cout << "3) view the scoreboard: " << endl;
 				cout << "your choice: ";
 				cin >> x;
 				while (x != 0) {
@@ -271,11 +296,21 @@ int main() {
 						viewlistofcourses1(scy, q, l, temp);
 						break;
 					}
+					case 3: {
+						viewlistofcourses1(scy, q, l, temp);
+						cout << "your choice: ";
+						int a;
+						cin >> a;
+						viewscoreboardpublished(scy, l, q, a, tk);
+						system("pause");
+						break;
+					}
 					}
 					system("cls");
 					cout << "0) log out" << endl;
 					cout << "1) my information" << endl;
 					cout << "2) view list of courses" << endl;
+					cout << "3) view the scoreboard: " << endl;
 					cout << "your choice: ";
 					cin >> x;
 				}

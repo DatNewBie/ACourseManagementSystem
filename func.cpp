@@ -671,6 +671,7 @@ void updatecourse(schoolyear&scy, int q, int a) {
 			const char* oldname = scy.s[q].cr[a].namefilestudent.c_str();
 			const char* newname = temp.c_str();
 			int result = rename(oldname, newname);
+			scy.s[q].cr[a].namefilestudent = temp;
 			break;
 		}
 		case 3: {
@@ -768,7 +769,6 @@ void viewscoreboard(schoolyear scy, int q, int a) {
 			getline(f, temp);
 			if (f.eof()) {
 				f.close();
-				system("pause");
 				return;
 			}
 			cout << temp << endl;
@@ -1010,4 +1010,141 @@ void viewlistofcourses1(schoolyear scy, int q, list* l, node* temp) {
 	}
 	if (c == 0) cout << "does not exist any courses" << endl;
 	system("pause");
+}
+
+void viewscoreboardpublished(schoolyear scy, list* l, int q, int a,string tk) {
+	node* temp = l[a].head;
+	string temp1;
+	while (temp != NULL) {
+		if (temp->s->studentid == tk) {
+			if (scy.s[q].cr[a].publishscore == true) {
+				ifstream f;
+				f.open(scy.s[q].cr[a].scoreboard);
+				if (!f.is_open()) {
+					cout << "the scoreboard of this course does not exist" << endl;
+					return;
+				}
+				while (!f.eof()) {
+					getline(f, temp1);
+					if (f.eof()) {
+						f.close();
+						return;
+					}
+					cout << temp1 << endl;
+				}
+			}
+			else {
+				cout << "the scoreboard of this course has not been published" << endl;
+				return;
+			}
+		}
+		temp = temp->next;
+	}
+}
+
+void scoreboardofclass(schoolyear scy, list* l, int q, int a, list* l1, list* l2, list* l3) {
+	fstream f,f1;
+	string temp1;
+	f.open(scy.c[a].namefile, ios::in); 
+	if (!f.is_open()) {
+		cout << "data of class does not exist" << endl;
+		return;
+	}
+	getline(f, temp1);
+	getline(f, temp1);
+	string temp2(temp1, 2, 8);
+	f.close();
+	f.open(scy.c[a].namefile, ios::in);
+	if (!f.is_open()) {
+		cout << "data of class does not exist" << endl;
+		return;
+	}
+	else {
+		int q1, q2;
+		list* l4, * l5;
+		string temp = scy.c[a].namefile;
+		temp = "ScoreBoard\\Class\\" + scy.c[a].namefile;
+		f1.open(temp, ios::out);
+		getline(f, temp1);
+		f1 << temp1;
+		for (int i = 1; i <= scy.s[q].numofclass; i++) {
+			node* temp3 = l[i].head;
+			while (temp3!=NULL) {
+				if (temp3->s->studentid == temp2) {
+					f1 << "," << scy.s[q].cr[i].namecr;
+					break;
+				}
+				temp3 = temp3->next;
+			}
+		}
+		f1 << ",GPA in this semester,Overall GPA" << endl;
+		while (!f.eof()) {
+			float sum = 0;
+			int cre = 0;
+			getline(f, temp1);
+			if (f.eof()) return;
+			f1 << temp1;
+			string temp2(temp1, 2, 8);
+			for (int i = 1; i <= scy.s[q].numofclass; i++) {
+				node* temp3 = l[i].head;
+				while (temp3 != NULL) {
+					if (temp3->s->studentid == temp2) {
+						cout << ","<< temp3->s->fnmark;
+						sum += temp3->s->fnmark;
+						cre += stoi(scy.s[q].cr[i].nocre);
+					}
+					temp3 = temp3->next;
+				}
+			}
+			if (cre == 0) f1 << ",0";
+			else {
+				f1 << "," << 1.0 * sum / cre;
+			}
+			if (q == 1) {
+				q1 = 2;
+				q2 = 3;
+				l4 = l2;
+				l5 = l3;
+			}
+			else {
+				if (q == 2) {
+					q1 = 1;
+					q2 = 3;
+					l4 = l1;
+					l5 = l3;
+				}
+				else {
+					q1 = 1;
+					q2 = 2;
+					l4 = l1;
+					l5 = l2;
+				}
+			}
+			if (l4 != NULL) {
+				for (int i = 1; i <= scy.s[q1].numofclass; i++) {
+					node* temp3 = l4[i].head;
+					while (temp3 != NULL) {
+						if (temp3->s->studentid == temp2) {
+							sum += temp3->s->fnmark;
+							cre += stoi(scy.s[q].cr[i].nocre);
+						}
+						temp3 = temp3->next;
+					}
+				}
+			}
+			if (l5 != NULL) {
+				for (int i = 1; i <= scy.s[q2].numofclass; i++) {
+					node* temp3 = l5[i].head;
+					while (temp3 != NULL) {
+						if (temp3->s->studentid == temp2) {
+							sum += temp3->s->fnmark;
+							cre += stoi(scy.s[q].cr[i].nocre);
+						}
+						temp3 = temp3->next;
+					}
+				}
+			}
+			f1 << "," << 1.0 * sum / cre << endl;
+		}
+	}
 }
