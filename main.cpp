@@ -188,7 +188,7 @@ int main() {
 					cout << "your choice: ";
 					int a;
 					cin >> a;
-					viewscoreboard(scy, q, a);
+					viewscoreboard(scy,l, q, a);
 					system("pause");
 					break;
 				}

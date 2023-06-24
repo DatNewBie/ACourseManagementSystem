@@ -759,7 +759,7 @@ void exportscoreboard(schoolyear scy,  list* l, int q, int a) {
 	f.close();
 }
 
-void viewscoreboard(schoolyear scy, int q, int a) {
+void viewscoreboard(schoolyear scy, list* l, int q, int a) {
 	fstream f;
 	string temp;
 	f.open(scy.s[q].cr[a].scoreboard, ios::in);
@@ -777,61 +777,68 @@ void viewscoreboard(schoolyear scy, int q, int a) {
 	f.close();
 }
 
+void addresult(schoolyear scy, list*& l, int q, int a) {
+	fstream f;
+	f.open(scy.s[q].cr[a].scoreboard, ios::in);
+	node* temp1 = l[a].head;
+	string temp;
+	getline(f, temp);
+	while (!f.eof() && l[a].head != NULL) {
+		getline(f, temp);
+		int c = 0;
+		for (int i = 0; i < temp.length(); i++) {
+			if (temp[i] == ',') c++;
+			if (c == 3) {
+				i++;
+				string t;
+				while (temp[i] != ',') {
+					t += temp[i];
+					i++;
+				}
+				l[a].head->s->ttmark = stof(t);
+				t = "";
+				i++;
+				while (temp[i] != ',') {
+					t += temp[i];
+					i++;
+				}
+				l[a].head->s->fnmark = stof(t);
+				t = "";
+				i++;
+				while (temp[i] != ',') {
+					t += temp[i];
+					i++;
+				}
+				l[a].head->s->mtmark = stof(t);
+				t = "";
+				i++;
+				while (i < temp.length()) {
+					t += temp[i];
+					i++;
+				}
+				l[a].head->s->omark = stof(t);
+				break;
+			}
+		}
+		l[a].head = l[a].head->next;
+	}
+	l[a].head = temp1;
+	f.close();
+}
+
 void updateresult(schoolyear scy, list*& l, int q, int a) {
 	fstream f;
 	node* temp2 = l[a].head;
 	f.open(scy.s[q].cr[a].scoreboard, ios::in);
 	if (!f.is_open()) {
 		cout << "The scoreboard of this course does not exist" << endl;
+		f.close();
 		return;
 	}
 	else {
 		if (l[a].head->s->ttmark == NULL) {
-			node* temp1 = l[a].head;
-			string temp;
-			getline(f, temp);
-			while (!f.eof() && l[a].head != NULL) {
-				getline(f, temp);
-				int c = 0;
-				for (int i = 0; i < temp.length(); i++) {
-					if (temp[i] == ',') c++;
-					if (c == 3) {
-						i++;
-						string t;
-						while (temp[i] != ',') {
-							t += temp[i];
-							i++;
-						}
-						l[a].head->s->ttmark = stof(t);
-						t = "";
-						i++;
-						while (temp[i] != ',') {
-							t += temp[i];
-							i++;
-						}
-						l[a].head->s->fnmark = stof(t);
-						t = "";
-						i++;
-						while (temp[i] != ',') {
-							t += temp[i];
-							i++;
-						}
-						l[a].head->s->mtmark = stof(t);
-						t = "";
-						i++;
-						while (i < temp.length()) {
-							t += temp[i];
-							i++;
-						}
-						l[a].head->s->omark = stof(t);
-						break;
-					}
-				}
-				l[a].head = l[a].head->next;
-			}
-			l[a].head = temp1;
+			addresult(scy, l, q, a);
 		}
-		f.close();
 		string ms;
 		cout << "input student id: ";
 		cin >> ms;
@@ -1043,108 +1050,110 @@ void viewscoreboardpublished(schoolyear scy, list* l, int q, int a,string tk) {
 }
 
 void scoreboardofclass(schoolyear scy, list* l, int q, int a, list* l1, list* l2, list* l3) {
-	fstream f,f1;
-	string temp1;
-	f.open(scy.c[a].namefile, ios::in); 
-	if (!f.is_open()) {
-		cout << "data of class does not exist" << endl;
-		return;
+	fstream f, f1;
+	for (int i = 1; i <= scy.s[q].numofclass; i++) {
+		addresult(scy, l, q, i);
 	}
-	getline(f, temp1);
-	getline(f, temp1);
-	string temp2(temp1, 2, 8);
-	f.close();
 	f.open(scy.c[a].namefile, ios::in);
 	if (!f.is_open()) {
-		cout << "data of class does not exist" << endl;
-		return;
+		cout << "the data does not exist" << endl;
+		f.close();
 	}
 	else {
-		int q1, q2;
-		list* l4, * l5;
-		string temp = scy.c[a].namefile;
-		temp = "ScoreBoard\\Class\\" + scy.c[a].namefile;
+		string temp1;
+		string temp = "ScoreBoard\\Class\\" + scy.c[a].namefile;
 		f1.open(temp, ios::out);
 		getline(f, temp1);
 		f1 << temp1;
+		getline(f, temp1);
+		string temp2(temp1, 2, 8);
 		for (int i = 1; i <= scy.s[q].numofclass; i++) {
 			node* temp3 = l[i].head;
-			while (temp3!=NULL) {
+			while (temp3 != NULL) {
 				if (temp3->s->studentid == temp2) {
 					f1 << "," << scy.s[q].cr[i].namecr;
-					break;
 				}
 				temp3 = temp3->next;
 			}
 		}
-		f1 << ",GPA in this semester,Overall GPA" << endl;
+		f.close();
+		f.open(scy.c[a].namefile, ios::in);
+		f1 << ",GPA in this semester,overall GPA" << endl;
+		getline(f, temp1);
 		while (!f.eof()) {
 			float sum = 0;
 			int cre = 0;
 			getline(f, temp1);
-			if (f.eof()) return;
-			f1 << temp1;
-			string temp2(temp1, 2, 8);
+			f1 << temp1<<",0";
+			temp2 = "";
+			int c = 0;
+			while (c < temp1.length()) {
+				c++;
+				if (temp1[c] == ',') {
+					c++;
+					while (temp1[c] != ',') {
+						temp2 = temp2 + temp1[c];
+						c++;
+					}
+					break;
+				}
+			}
 			for (int i = 1; i <= scy.s[q].numofclass; i++) {
 				node* temp3 = l[i].head;
 				while (temp3 != NULL) {
 					if (temp3->s->studentid == temp2) {
-						cout << ","<< temp3->s->fnmark;
-						sum += temp3->s->fnmark;
+						f1 << "," << temp3->s->fnmark;
+						sum = sum + temp3->s->fnmark * stoi(scy.s[q].cr[i].nocre);
 						cre += stoi(scy.s[q].cr[i].nocre);
 					}
 					temp3 = temp3->next;
 				}
 			}
-			if (cre == 0) f1 << ",0";
-			else {
-				f1 << "," << 1.0 * sum / cre;
-			}
-			if (q == 1) {
-				q1 = 2;
-				q2 = 3;
-				l4 = l2;
-				l5 = l3;
-			}
-			else {
-				if (q == 2) {
-					q1 = 1;
-					q2 = 3;
-					l4 = l1;
-					l5 = l3;
-				}
-				else {
-					q1 = 1;
-					q2 = 2;
-					l4 = l1;
-					l5 = l2;
-				}
-			}
-			if (l4 != NULL) {
-				for (int i = 1; i <= scy.s[q1].numofclass; i++) {
-					node* temp3 = l4[i].head;
+			f1 << ","<<sum / cre;
+			sum = 0;
+			cre = 0;
+			if (l1 != NULL) {
+				for (int i = 1; i <= scy.s[1].numofclass; i++) {
+					node* temp3 = l1[i].head;
 					while (temp3 != NULL) {
 						if (temp3->s->studentid == temp2) {
-							sum += temp3->s->fnmark;
-							cre += stoi(scy.s[q].cr[i].nocre);
+							sum = sum + temp3->s->fnmark * stoi(scy.s[1].cr[i].nocre);
+							cre += stoi(scy.s[1].cr[i].nocre);
+							break;
 						}
 						temp3 = temp3->next;
 					}
 				}
 			}
-			if (l5 != NULL) {
-				for (int i = 1; i <= scy.s[q2].numofclass; i++) {
-					node* temp3 = l5[i].head;
+			if (l2 != NULL) {
+				for (int i = 1; i <= scy.s[2].numofclass; i++) {
+					node* temp3 = l2[i].head;
 					while (temp3 != NULL) {
 						if (temp3->s->studentid == temp2) {
-							sum += temp3->s->fnmark;
-							cre += stoi(scy.s[q].cr[i].nocre);
+							sum = sum + temp3->s->fnmark * stoi(scy.s[2].cr[i].nocre);
+							cre += stoi(scy.s[2].cr[i].nocre);
+							break;
 						}
 						temp3 = temp3->next;
 					}
 				}
 			}
-			f1 << "," << 1.0 * sum / cre << endl;
+			if (l3 != NULL) {
+				for (int i = 1; i <= scy.s[3].numofclass; i++) {
+					node* temp3 = l3[i].head;
+					while (temp3 != NULL) {
+						if (temp3->s->studentid == temp2) {
+							sum = sum + temp3->s->fnmark * stoi(scy.s[3].cr[i].nocre);
+							cre += stoi(scy.s[3].cr[i].nocre);
+							break;
+						}
+						temp3 = temp3->next;
+					}
+				}
+			}
+			f1 << "," << sum / cre << endl;
 		}
 	}
+	f.close();
+	f1.close();
 }
