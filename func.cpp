@@ -727,7 +727,22 @@ void viewlistofstudent(schoolyear scy, int k, int l,int q) {
 				f.close();
 				return;
 			}
-			cout << temp << endl;
+			int c = 0 , d = 0;
+			while (c < temp.length()) {
+				if (c != 0) c++;
+				string temp1;
+				while (temp[c] != ','&&c<temp.length()) {
+					temp1 += temp[c];
+					c++;
+				}
+				d++;
+				if (d==3) cout << setw(20) << left << temp1;
+				else {
+					if (d == 2) cout << setw(15) << left << temp1;
+					else cout << setw(d*4) << left << temp1;
+				}
+			}
+			cout << endl;
 		}
 	}
 	if (k == 2) {
@@ -739,7 +754,22 @@ void viewlistofstudent(schoolyear scy, int k, int l,int q) {
 				f.close();
 				return;
 			}
-			cout << temp << endl;
+			int c = 0 , d = 0;
+			while (c < temp.length()) {
+				if (c != 0) c++;
+				string temp1 = "";
+				while (temp[c] != ','&&c<temp.length()) {
+					temp1 += temp[c];
+					c++;
+				}
+				d++;
+				if (d == 3) cout << setw(20) << left << temp1;
+				else {
+					if (d == 2) cout << setw(15) << left << temp1;
+					else cout << setw(d * 4) << left << temp1;
+				}
+			}
+			cout << endl;
 		}
 	}
 	f.close();
@@ -771,7 +801,22 @@ void viewscoreboard(schoolyear scy, list* l, int q, int a) {
 				f.close();
 				return;
 			}
-			cout << temp << endl;
+			int c = 0, d = 0;
+			while (c < temp.length()) {
+				if (c != 0) c++;
+				string temp1;
+				while (temp[c] != ',' && c < temp.length()) {
+					temp1 += temp[c];
+					c++;
+				}
+				d++;
+				if (d == 3) cout << setw(30) << left << temp1;
+				else {
+					if (d == 2) cout << setw(15) << left << temp1;
+					else cout << setw(d * 4) << left << temp1;
+				}
+			}
+			cout << endl;
 		}
 	}
 	f.close();
