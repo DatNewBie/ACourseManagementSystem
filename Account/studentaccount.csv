@@ -208,6 +208,7 @@ Id,Password,Last Name,First Name,Gender,Birth,Staff
 20120142,123456@,Phan Thi Kim,Ngan,Female,29/5/2002,0
 20120144,123456@,Le Chi,Nghia,Female,30/1/2002,0
 20120145,123456@,Duong Yen,Ngoc,Female,23/8/2002,0
+22120054,123456@,Le Van Thanh,Dat,Male,03/09/2004,0
 
 20120002,123456@,Nguyen Thai,Chung,Male,9/6/2002,0
 20120007,123456@,Do Trung,Hieu,Female,18/5/2002,0
@@ -313,109 +314,3 @@ Id,Password,Last Name,First Name,Gender,Birth,Staff
 20120142,123456@,Phan Thi Kim,Ngan,Female,29/5/2002,0
 20120144,123456@,Le Chi,Nghia,Female,30/1/2002,0
 20120145,123456@,Duong Yen,Ngoc,Female,23/8/2002,0
-
-20120002,123456@,Nguyen Thai,Chung,Male,9/6/2002,0
-20120007,123456@,Do Trung,Hieu,Female,18/5/2002,0
-20120009,123456@,Nguyen Van,Hung,Male,26/8/2002,0
-20120010,123456@,Nguyen Duc,Huy,Female,23/4/2002,0
-20120011,123456@,Nguyen Hoang,Huy,Male,14/5/2002,0
-20120012,123456@,Nguyen Pham Nhat,Huy,Female,9/11/2002,0
-20120013,123456@,Trinh Quoc,Huy,Male,15/10/2002,0
-20120014,123456@,Vuong Gia,Huy,Female,14/12/2002,0
-20120015,123456@,Ly Hoang,Khai,Female,30/1/2002,0
-20120017,123456@,Phan Quoc,Ky,Male,26/10/2002,0
-20120018,123456@,Tran Kieu Minh,Lam,Male,12/4/2002,0
-20120019,123456@,Nguyen Duc,Manh,Male,30/11/2002,0
-20120020,123456@,Huynh Duc,Nham,Female,29/3/2002,0
-20120021,123456@,Ho Van,Son,Female,23/9/2002,0
-20120022,123456@,Le Quang,Tri,Female,17/10/2002,0
-20120023,123456@,Bui Quoc,Trung,Female,28/12/2002,0
-20120024,123456@,Huynh Minh,Tuan,Male,4/4/2002,0
-20120025,123456@,Hoang Trong,Vu,Male,3/8/2002,0
-20120027,123456@,Le Hai,Duy,Female,4/1/2002,0
-20120028,123456@,Huynh Le,An,Male,20/2/2002,0
-20120029,123456@,Nguyen Minh,An,Female,10/6/2002,0
-20120030,123456@,Nguyen Thien,An,Female,16/3/2002,0
-20120031,123456@,Nguyen Viet,An,Male,25/9/2002,0
-20120032,123456@,Phan Truong,An,Male,9/6/2002,0
-20120033,123456@,Vo Hoai,An,Male,25/9/2002,0
-20120037,123456@,Tran Thi Minh,Anh,Female,26/7/2002,0
-20120038,123456@,Vu Hoang The,Anh,Female,29/1/2002,0
-20120040,123456@,Nguyen Quang Gia,Bao,Female,29/5/2002,0
-20120041,123456@,Tran Kim,Bao,Male,21/6/2002,0
-20120042,123456@,Truong Quan,Bao,Female,14/7/2002,0
-20120043,123456@,Vuong Le Duc,Binh,Male,28/10/2002,0
-20120044,123456@,Ngo Thi Ngoc,Boi,Female,14/5/2002,0
-20120045,123456@,Ho Thi Kim,Chi,Female,16/8/2002,0
-20120046,123456@,Ngo Xuan,Chien,Male,2/8/2002,0
-20120049,123456@,Nguyen Hai,Dang,Female,4/7/2002,0
-20120050,123456@,Nguyen Nhat,Dang,Female,24/4/2002,0
-20120053,123456@,Nguyen Thanh,Dat,Male,6/12/2002,0
-20120054,123456@,Nguyen Thanh,Dat,Male,16/9/2002,0
-20120055,123456@,Nguyen The,Dat,Male,30/6/2002,0
-20120056,123456@,Tran Quoc,Dinh,Male,12/5/2002,0
-20120057,123456@,Tran Ngoc,Do,Male,2/1/2002,0
-20120059,123456@,Le Ngoc,Duc,Female,7/10/2002,0
-20120060,123456@,Nguyen Tri,Duc,Male,4/10/2002,0
-20120061,123456@,Pham Duong Truong,Duc,Male,2/12/2002,0
-20120063,123456@,Le Thi Thuy,Duong,Female,18/3/2002,0
-20120065,123456@,Lam Quang,Duy,Male,27/7/2002,0
-20120067,123456@,Nguyen Pham Ba,Duy,Female,6/12/2002,0
-20120068,123456@,Phan,Duy,Female,28/2/2002,0
-20120069,123456@,Tao Khanh,Duy,Male,22/6/2002,0
-20120070,123456@,Huynh Thiet,Gia,Male,18/6/2002,0
-20120071,123456@,Nguyen Thi Bich,Ha,Female,19/12/2002,0
-20120072,123456@,Phan Ngoc Son,Ha,Male,8/8/2002,0
-20120073,123456@,Van Ly,Hai,Male,20/7/2002,0
-20120074,123456@,Nguyen Gia,Hao,Male,22/1/2002,0
-20120075,123456@,Le Thi Minh,Hien,Male,21/9/2002,0
-20120076,123456@,Mai Vinh,Hien,Male,24/12/2002,0
-20120077,123456@,Nguyen Quang,Hien,Female,23/9/2002,0
-20120078,123456@,Nguyen The,Hien,Male,10/8/2002,0
-20120079,123456@,Trinh Huu,Hiep,Male,12/4/2002,0
-20120081,123456@,Nguyen Mau Trong,Hieu,Female,14/12/2002,0
-20120082,123456@,Nguyen Thanh,Hieu,Female,31/12/2002,0
-20120083,123456@,Nguyen Trong,Hieu,Female,26/10/2002,0
-20120084,123456@,Nguyen Van,Hieu,Male,20/10/2002,0
-20120085,123456@,Tran Xuan,Hoa,Male,9/5/2002,0
-20120087,123456@,Duong Dinh Bao,Hoang,Male,7/3/2002,0
-20120088,123456@,Le Nguyen Thanh,Hoang,Male,1/6/2002,0
-20120089,123456@,Le Xuan,Hoang,Male,16/6/2002,0
-20120090,123456@,Nguyen The,Hoang,Female,3/1/2002,0
-20120092,123456@,Tran Huy,Hoang,Male,16/12/2002,0
-20120093,123456@,Nguyen Thi Hong,Nhung,Male,12/4/2002,0
-20120094,123456@,Pham Phu,Hung,Male,3/1/2002,0
-20120095,123456@,Ngo Quang,Hung,Female,3/5/2002,0
-20120096,123456@,Nguyen Duy,Hung,Female,17/4/2002,0
-20120097,123456@,Trieu Tan,Hung,Female,13/8/2002,0
-20120099,123456@,Tran Huynh,Huong,Female,20/9/2002,0
-20120100,123456@,Do Minh,Huy,Male,12/3/2002,0
-20120101,123456@,Du Quoc,Huy,Male,21/11/2002,0
-20120102,123456@,Du Thanh,Huy,Male,28/2/2002,0
-20120105,123456@,Le Hoang,Huy,Male,26/8/2002,0
-20120107,123456@,Pham Duc,Huy,Female,5/4/2002,0
-20120109,123456@,Truong Ngoc,Huy,Female,14/6/2002,0
-20120113,123456@,Le Nguyen,Khang,Female,21/4/2002,0
-20120115,123456@,Nguyen Dang Nam,Khanh,Female,28/3/2002,0
-20120116,123456@,Pham Le Quoc,Khanh,Male,2/2/2002,0
-20120117,123456@,Pham Nguyen Khanh,Minh,Male,23/8/2002,0
-20120118,123456@,Nguyen Anh,Khoa,Male,30/10/2002,0
-20120120,123456@,Nguyen Viet,Khoa,Male,27/9/2002,0
-20120121,123456@,Pham Nhat Anh,Khoa,Male,25/1/2002,0
-20120125,123456@,Bui Anh,Kiet,Male,15/12/2002,0
-20120127,123456@,Tran Minh Tuan,Kiet,Female,26/1/2002,0
-20120128,123456@,Nguyen Thi Cam,Lai,Male,30/3/2002,0
-20120130,123456@,Dinh Thi Hoang,Linh,Male,15/12/2002,0
-20120131,123456@,Nguyen Van,Loc,Female,9/6/2002,0
-20120132,123456@,Nguyen Tuan,Minh,Male,25/10/2002,0
-20120133,123456@,Pham Le Hoai,Minh,Female,2/12/2002,0
-20120134,123456@,Tran Nguyen Khai,Minh,Male,21/12/2002,0
-20120136,123456@,Huynh Tuan,Nam,Male,7/11/2002,0
-20120138,123456@,Le Thanh,Nam,Female,19/6/2002,0
-20120139,123456@,Mai Nhat,Nam,Female,5/8/2002,0
-20120140,123456@,Nguyen Dang,Nam,Male,29/11/2002,0
-20120141,123456@,Tran Hoang Phuong,Nam,Male,25/4/2002,0
-20120142,123456@,Phan Thi Kim,Ngan,Female,29/5/2002,0
-20120144,123456@,Le Chi,Nghia,Female,30/1/2002,0
-20120145,123456@,Duong Yen,Ngoc,Female,23/8/2002,0
-

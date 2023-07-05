@@ -181,9 +181,11 @@ void addstudent(schoolyear& scy) {
 	cout << "link data student: ";
 	cin >> temp;
 	f1.open(temp, ios::in);
+	getline(f1, details);
+	f << details;
 	while (!f1.eof()) {
 		getline(f1, details);
-		f << details << endl;
+		f << endl << details;
 	}
 	f.close();
 	f1.close();
@@ -267,7 +269,7 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 	getline(f, details);
 	f1 << details << endl;
 	getline(f, details);
-	f1 << details << endl;
+	f1 << details;
 	int i = 0;
 	l[scy.s[k].numofclass].head = new node;
 	l[scy.s[k].numofclass].head->s = new student;
@@ -341,7 +343,7 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 	p = l[scy.s[k].numofclass].head;
 	while (!f.eof()) {
 		getline(f, details);
-		f1 << details << endl;
+		f1 << endl << details;
 		int i = 0;
 		while (i < details.size()) {
 			if (details[i] != 44) {
@@ -480,8 +482,7 @@ void addastudent(int k,list*& l, courses s) {
 	while (l[k].head->next != NULL) {
 		l[k].head = l[k].head->next;
 	}
-	int n = stoi(l[k].head->s->no);
-	n++;
+	int n = stoi(l[k].head->s->no) + 1;
 	temp1->s = new student;
 	temp1->s->no = to_string(n);
 	cin.ignore();
@@ -502,7 +503,7 @@ void addastudent(int k,list*& l, courses s) {
 	l[k].head->next = temp1;
 	temp1->next = NULL;
 	l[k].head = temp;
-	f << temp1->s->no << "," << temp1->s->studentid << "," << temp1->s->lname << "," << temp1->s->fname << "," << temp1->s->gender << "," << temp1->s->birth << "," << temp1->s->socialid << endl;
+	f <<endl<< temp1->s->no << "," << temp1->s->studentid << "," << temp1->s->lname << "," << temp1->s->fname << "," << temp1->s->gender << "," << temp1->s->birth << "," << temp1->s->socialid << endl;
 	fstream f1;
 	f1.open("Account\\studentaccount.csv", ios::app);
 	f1 << temp1->s->studentid << "," << "123456@" << "," << temp1->s->lname << "," << temp1->s->fname << "," << temp1->s->gender << "," << temp1->s->birth << "," << temp1->s->staf << endl;
@@ -667,6 +668,7 @@ void updatecourse(schoolyear&scy, int q, int a) {
 			cin.ignore();
 			getline(cin, temp);
 			scy.s[q].cr[a].namecr = temp;
+			temp = "Courses\\" + temp;
 			temp += ".csv";
 			const char* oldname = scy.s[q].cr[a].namefilestudent.c_str();
 			const char* newname = temp.c_str();
@@ -783,7 +785,12 @@ void exportscoreboard(schoolyear scy,  list* l, int q, int a) {
 	f << "No,Student ID,Student Full Name,Total Mark,Final Mark,Midterm Mark,Other Mark" << endl;
 	node* temp = l[a].head;
 	while (temp != NULL) {
-		f << temp->s->no << "," << temp->s->studentid << "," << temp->s->lname << " " << temp->s->fname << "," << endl;
+		if (temp->next == NULL) {
+			f << temp->s->no << "," << temp->s->studentid << "," << temp->s->lname << " " << temp->s->fname << ",";
+		}
+		else {
+			f << temp->s->no << "," << temp->s->studentid << "," << temp->s->lname << " " << temp->s->fname << "," << endl;
+		}
 		temp = temp->next;
 	}
 	f.close();
@@ -959,7 +966,12 @@ void updateresult(schoolyear scy, list*& l, int q, int a) {
 		f.open(scy.s[q].cr[a].scoreboard, ios::out);
 		f << "No,Student ID,Student Full Name,Total Mark,Final Mark,Midterm Mark,Other Mark" << endl;
 		while (temp2 != NULL) {
-			f << temp2->s->no << "," << temp2->s->studentid << "," << temp2->s->lname << " " << temp2->s->fname << "," << temp2->s->ttmark<<","<< temp2->s->fnmark<<","<< temp2->s->mtmark<<","<< temp2->s->omark<<endl;
+			if (temp2->next == NULL) {
+				f << temp2->s->no << "," << temp2->s->studentid << "," << temp2->s->lname << " " << temp2->s->fname << "," << temp2->s->ttmark << "," << temp2->s->fnmark << "," << temp2->s->mtmark << "," << temp2->s->omark;
+			}
+			else {
+				f << temp2->s->no << "," << temp2->s->studentid << "," << temp2->s->lname << " " << temp2->s->fname << "," << temp2->s->ttmark << "," << temp2->s->fnmark << "," << temp2->s->mtmark << "," << temp2->s->omark << endl;
+			}
 			temp2 = temp2->next;
 		}
 		f.close();
@@ -1107,12 +1119,13 @@ void scoreboardofclass(schoolyear scy, list* l, int q, int a, list* l1, list* l2
 	}
 	else {
 		string temp1;
-		string temp = "ScoreBoard\\Class\\" + scy.c[a].namefile;
+		string temp = "ScoreBoard\\Class\\" + scy.c[a].name + ".csv";
 		f1.open(temp, ios::out);
 		getline(f, temp1);
 		f1 << temp1;
 		getline(f, temp1);
 		string temp2(temp1, 2, 8);
+		f.close();
 		for (int i = 1; i <= scy.s[q].numofclass; i++) {
 			node* temp3 = l[i].head;
 			while (temp3 != NULL) {
@@ -1122,7 +1135,6 @@ void scoreboardofclass(schoolyear scy, list* l, int q, int a, list* l1, list* l2
 				temp3 = temp3->next;
 			}
 		}
-		f.close();
 		f.open(scy.c[a].namefile, ios::in);
 		f1 << ",GPA in this semester,overall GPA" << endl;
 		getline(f, temp1);
