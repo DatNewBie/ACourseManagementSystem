@@ -175,7 +175,7 @@ void addstudent(schoolyear& scy) {
 	}
 	cout << "the number of class which need to add student: ";
 	cin >> k;
-	scy.c[k].namefile = scy.c[k].name;
+	scy.c[k].namefile += scy.c[k].name;
 	scy.c[k].namefile += ".csv";
 	f.open(scy.c[k].namefile, ios::app);
 	cout << "link data student: ";
@@ -259,7 +259,7 @@ void addacourses(schoolyear& scy, int k, list*& l) {
 	cout << "link data student: ";
 	cin >> temp;
 	cin.ignore();
-	scy.s[k].cr[scy.s[k].numofclass].namefilestudent = scy.s[k].cr[scy.s[k].numofclass].namecr;
+	scy.s[k].cr[scy.s[k].numofclass].namefilestudent += scy.s[k].cr[scy.s[k].numofclass].namecr;
 	fstream f, f1;
 	f.open(temp, ios::in);
 	scy.s[k].cr[scy.s[k].numofclass].namefilestudent += ".csv";

@@ -7,7 +7,7 @@
 using namespace std;
 
 struct courses {
-	string id, namecr, clsname, teachername, dow, namefilestudent, nocre, scoreboard = "ScoreBoard\\";
+	string id, namecr, clsname, teachername, dow, namefilestudent="Courses\\", nocre, scoreboard = "ScoreBoard\\Courses\\";
 	bool publishscore = false;
 };
 
@@ -19,7 +19,7 @@ struct semester {
 
 struct classes {
 	string name;
-	string namefile;
+	string namefile = "Data\\First-year\\";
 };
 
 struct schoolyear {
