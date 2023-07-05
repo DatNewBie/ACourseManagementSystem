@@ -881,6 +881,7 @@ void updateresult(schoolyear scy, list*& l, int q, int a) {
 		return;
 	}
 	else {
+		f.close();
 		if (l[a].head->s->ttmark == NULL) {
 			addresult(scy, l, q, a);
 		}
@@ -958,11 +959,11 @@ void updateresult(schoolyear scy, list*& l, int q, int a) {
 		f.open(scy.s[q].cr[a].scoreboard, ios::out);
 		f << "No,Student ID,Student Full Name,Total Mark,Final Mark,Midterm Mark,Other Mark" << endl;
 		while (temp2 != NULL) {
-			f << temp2->s->no << "," << temp2->s->studentid << "," << temp2->s->lname << " " << temp2->s->fname << "," <<temp2->s->ttmark<<","<< temp2->s->fnmark<<","<< temp2->s->mtmark<<","<< temp2->s->omark<<endl;
+			f << temp2->s->no << "," << temp2->s->studentid << "," << temp2->s->lname << " " << temp2->s->fname << "," << temp2->s->ttmark<<","<< temp2->s->fnmark<<","<< temp2->s->mtmark<<","<< temp2->s->omark<<endl;
 			temp2 = temp2->next;
 		}
+		f.close();
 	}
-	f.close();
 }
 
 void myinformation1(node* temp) {
@@ -1129,6 +1130,7 @@ void scoreboardofclass(schoolyear scy, list* l, int q, int a, list* l1, list* l2
 			float sum = 0;
 			int cre = 0;
 			getline(f, temp1);
+			if (f.eof()) break;
 			f1 << temp1<<",0";
 			temp2 = "";
 			int c = 0;
@@ -1198,7 +1200,13 @@ void scoreboardofclass(schoolyear scy, list* l, int q, int a, list* l1, list* l2
 			}
 			f1 << "," << sum / cre << endl;
 		}
+		f.close();
+		f1.close();
+		f.open(temp, ios::in);
+		while (!f.eof()) {
+			getline(f, temp1);
+			cout << temp1 << endl;
+		}
+		f.close();
 	}
-	f.close();
-	f1.close();
 }
