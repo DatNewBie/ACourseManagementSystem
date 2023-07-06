@@ -1,105 +1,105 @@
 No,Student ID,Student Full Name,Total Mark,Final Mark,Midterm Mark,Other Mark
-1,20120002,Nguyen Thai Chung,8,8,8,8
-2,20120007,Do Trung Hieu,8,8,8,8
-3,20120009,Nguyen Van Hung,8,8,8,8
-4,20120010,Nguyen Duc Huy,8,8,8,8
-5,20120011,Nguyen Hoang Huy,8,8,8,8
-6,20120012,Nguyen Pham Nhat Huy,8,8,8,8
-7,20120013,Trinh Quoc Huy,8,8,8,8
-8,20120014,Vuong Gia Huy,8,8,8,8
-9,20120015,Ly Hoang Khai,8,8,8,8
-10,20120017,Phan Quoc Ky,8,8,8,8
-11,20120018,Tran Kieu Minh Lam,8,8,8,8
-12,20120019,Nguyen Duc Manh,8,8,8,8
-13,20120020,Huynh Duc Nham,8,8,8,8
-14,20120021,Ho Van Son,8,8,8,8
-15,20120022,Le Quang Tri,8,8,8,8
-16,20120023,Bui Quoc Trung,8,8,8,8
-17,20120024,Huynh Minh Tuan,8,8,8,8
-18,20120025,Hoang Trong Vu,8,8,8,8
-19,20120027,Le Hai Duy,8,8,8,8
-20,20120028,Huynh Le An,8,8,8,8
-21,20120029,Nguyen Minh An,8,8,8,8
-22,20120030,Nguyen Thien An,8,8,8,8
-23,20120031,Nguyen Viet An,8,8,8,8
-24,20120032,Phan Truong An,8,8,8,8
-25,20120033,Vo Hoai An,8,8,8,8
-26,20120037,Tran Thi Minh Anh,8,8,8,8
-27,20120038,Vu Hoang The Anh,8,8,8,8
-28,20120040,Nguyen Quang Gia Bao,8,8,8,8
-29,20120041,Tran Kim Bao,8,8,8,8
-30,20120042,Truong Quan Bao,8,8,8,8
-31,20120043,Vuong Le Duc Binh,8,8,8,8
-32,20120044,Ngo Thi Ngoc Boi,8,8,8,8
-33,20120045,Ho Thi Kim Chi,8,8,8,8
-34,20120046,Ngo Xuan Chien,8,8,8,8
-35,20120049,Nguyen Hai Dang,8,8,8,8
-36,20120050,Nguyen Nhat Dang,8,8,8,8
-37,20120053,Nguyen Thanh Dat,8,8,8,8
-38,20120054,Nguyen Thanh Dat,8,8,8,8
-39,20120055,Nguyen The Dat,8,8,8,8
-40,20120056,Tran Quoc Dinh,8,8,8,8
-41,20120057,Tran Ngoc Do,8,8,8,8
-42,20120059,Le Ngoc Duc,8,8,8,8
-43,20120060,Nguyen Tri Duc,8,8,8,8
-44,20120061,Pham Duong Truong Duc,8,8,8,8
-45,20120063,Le Thi Thuy Duong,8,8,8,8
-46,20120065,Lam Quang Duy,8,8,8,8
-47,20120067,Nguyen Pham Ba Duy,8,8,8,8
-48,20120068,Phan Duy,8,8,8,8
-49,20120069,Tao Khanh Duy,8,8,8,8
-50,20120070,Huynh Thiet Gia,8,8,8,8
-51,20120071,Nguyen Thi Bich Ha,8,8,8,8
-52,20120072,Phan Ngoc Son Ha,8,8,8,8
-53,20120073,Van Ly Hai,8,8,8,8
-54,20120074,Nguyen Gia Hao,8,8,8,8
-55,20120075,Le Thi Minh Hien,8,8,8,8
-56,20120076,Mai Vinh Hien,8,8,8,8
-57,20120077,Nguyen Quang Hien,8,8,8,8
-58,20120078,Nguyen The Hien,8,8,8,8
-59,20120079,Trinh Huu Hiep,8,8,8,8
-60,20120081,Nguyen Mau Trong Hieu,8,8,8,8
-61,20120082,Nguyen Thanh Hieu,8,8,8,8
-62,20120083,Nguyen Trong Hieu,8,8,8,8
-63,20120084,Nguyen Van Hieu,8,8,8,8
-64,20120085,Tran Xuan Hoa,8,8,8,8
-65,20120087,Duong Dinh Bao Hoang,8,8,8,8
-66,20120088,Le Nguyen Thanh Hoang,8,8,8,8
-67,20120089,Le Xuan Hoang,8,8,8,8
-68,20120090,Nguyen The Hoang,8,8,8,8
-69,20120092,Tran Huy Hoang,8,8,8,8
-70,20120093,Nguyen Thi Hong Nhung,8,8,8,8
-71,20120094,Pham Phu Hung,8,8,8,8
-72,20120095,Ngo Quang Hung,8,8,8,8
-73,20120096,Nguyen Duy Hung,8,8,8,8
-74,20120097,Trieu Tan Hung,8,8,8,8
-75,20120099,Tran Huynh Huong,8,8,8,8
-76,20120100,Do Minh Huy,8,8,8,8
-77,20120101,Du Quoc Huy,8,8,8,8
-78,20120102,Du Thanh Huy,8,8,8,8
-79,20120105,Le Hoang Huy,8,8,8,8
-80,20120107,Pham Duc Huy,8,8,8,8
-81,20120109,Truong Ngoc Huy,8,8,8,8
-82,20120113,Le Nguyen Khang,8,8,8,8
-83,20120115,Nguyen Dang Nam Khanh,8,8,8,8
-84,20120116,Pham Le Quoc Khanh,8,8,8,8
-85,20120117,Pham Nguyen Khanh Minh,8,8,8,8
-86,20120118,Nguyen Anh Khoa,8,8,8,8
-87,20120120,Nguyen Viet Khoa,8,8,8,8
-88,20120121,Pham Nhat Anh Khoa,8,8,8,8
-89,20120125,Bui Anh Kiet,8,8,8,8
-90,20120127,Tran Minh Tuan Kiet,8,8,8,8
-91,20120128,Nguyen Thi Cam Lai,8,8,8,8
-92,20120130,Dinh Thi Hoang Linh,8,8,8,8
-93,20120131,Nguyen Van Loc,8,8,8,8
-94,20120132,Nguyen Tuan Minh,8,8,8,8
-95,20120133,Pham Le Hoai Minh,8,8,8,8
-96,20120134,Tran Nguyen Khai Minh,8,8,8,8
-97,20120136,Huynh Tuan Nam,8,8,8,8
-98,20120138,Le Thanh Nam,8,8,8,8
-99,20120139,Mai Nhat Nam,8,8,8,8
-100,20120140,Nguyen Dang Nam,8,8,8,8
-101,20120141,Tran Hoang Phuong Nam,8,8,8,8
-102,20120142,Phan Thi Kim Ngan,8,8,8,8
-103,20120144,Le Chi Nghia,8,8,8,8
-104,20120145,Duong Yen Ngoc,8,8,8,8
+1,20120002,Nguyen Thai Chung,8,7,7.5,9
+2,20120007,Do Trung Hieu,8,7,7.5,9
+3,20120009,Nguyen Van Hung,8,7,7.5,9
+4,20120010,Nguyen Duc Huy,8,7,7.5,9
+5,20120011,Nguyen Hoang Huy,8,7,7.5,9
+6,20120012,Nguyen Pham Nhat Huy,8,7,7.5,9
+7,20120013,Trinh Quoc Huy,8,7,7.5,9
+8,20120014,Vuong Gia Huy,8,7,7.5,9
+9,20120015,Ly Hoang Khai,8,7,7.5,9
+10,20120017,Phan Quoc Ky,8,7,7.5,9
+11,20120018,Tran Kieu Minh Lam,8,7,7.5,9
+12,20120019,Nguyen Duc Manh,8,7,7.5,9
+13,20120020,Huynh Duc Nham,8,7,7.5,9
+14,20120021,Ho Van Son,8,7,7.5,9
+15,20120022,Le Quang Tri,8,7,7.5,9
+16,20120023,Bui Quoc Trung,8,7,7.5,9
+17,20120024,Huynh Minh Tuan,8,7,7.5,9
+18,20120025,Hoang Trong Vu,8,7,7.5,9
+19,20120027,Le Hai Duy,8,7,7.5,9
+20,20120028,Huynh Le An,8,7,7.5,9
+21,20120029,Nguyen Minh An,8,7,7.5,9
+22,20120030,Nguyen Thien An,8,7,7.5,9
+23,20120031,Nguyen Viet An,8,7,7.5,9
+24,20120032,Phan Truong An,8,7,7.5,9
+25,20120033,Vo Hoai An,8,7,7.5,9
+26,20120037,Tran Thi Minh Anh,8,7,7.5,9
+27,20120038,Vu Hoang The Anh,8,7,7.5,9
+28,20120040,Nguyen Quang Gia Bao,8,7,7.5,9
+29,20120041,Tran Kim Bao,8,7,7.5,9
+30,20120042,Truong Quan Bao,8,7,7.5,9
+31,20120043,Vuong Le Duc Binh,8,7,7.5,9
+32,20120044,Ngo Thi Ngoc Boi,8,7,7.5,9
+33,20120045,Ho Thi Kim Chi,8,7,7.5,9
+34,20120046,Ngo Xuan Chien,8,7,7.5,9
+35,20120049,Nguyen Hai Dang,8,7,7.5,9
+36,20120050,Nguyen Nhat Dang,8,7,7.5,9
+37,20120053,Nguyen Thanh Dat,8,7,7.5,9
+38,20120054,Nguyen Thanh Dat,8,7,7.5,9
+39,20120055,Nguyen The Dat,8,7,7.5,9
+40,20120056,Tran Quoc Dinh,8,7,7.5,9
+41,20120057,Tran Ngoc Do,8,7,7.5,9
+42,20120059,Le Ngoc Duc,8,7,7.5,9
+43,20120060,Nguyen Tri Duc,8,7,7.5,9
+44,20120061,Pham Duong Truong Duc,8,7,7.5,9
+45,20120063,Le Thi Thuy Duong,8,7,7.5,9
+46,20120065,Lam Quang Duy,8,7,7.5,9
+47,20120067,Nguyen Pham Ba Duy,8,7,7.5,9
+48,20120068,Phan Duy,8,7,7.5,9
+49,20120069,Tao Khanh Duy,8,7,7.5,9
+50,20120070,Huynh Thiet Gia,8,7,7.5,9
+51,20120071,Nguyen Thi Bich Ha,8,7,7.5,9
+52,20120072,Phan Ngoc Son Ha,8,7,7.5,9
+53,20120073,Van Ly Hai,8,7,7.5,9
+54,20120074,Nguyen Gia Hao,8,7,7.5,9
+55,20120075,Le Thi Minh Hien,8,7,7.5,9
+56,20120076,Mai Vinh Hien,8,7,7.5,9
+57,20120077,Nguyen Quang Hien,8,7,7.5,9
+58,20120078,Nguyen The Hien,8,7,7.5,9
+59,20120079,Trinh Huu Hiep,8,7,7.5,9
+60,20120081,Nguyen Mau Trong Hieu,8,7,7.5,9
+61,20120082,Nguyen Thanh Hieu,8,7,7.5,9
+62,20120083,Nguyen Trong Hieu,8,7,7.5,9
+63,20120084,Nguyen Van Hieu,8,7,7.5,9
+64,20120085,Tran Xuan Hoa,8,7,7.5,9
+65,20120087,Duong Dinh Bao Hoang,8,7,7.5,9
+66,20120088,Le Nguyen Thanh Hoang,8,7,7.5,9
+67,20120089,Le Xuan Hoang,8,7,7.5,9
+68,20120090,Nguyen The Hoang,8,7,7.5,9
+69,20120092,Tran Huy Hoang,8,7,7.5,9
+70,20120093,Nguyen Thi Hong Nhung,8,7,7.5,9
+71,20120094,Pham Phu Hung,8,7,7.5,9
+72,20120095,Ngo Quang Hung,8,7,7.5,9
+73,20120096,Nguyen Duy Hung,8,7,7.5,9
+74,20120097,Trieu Tan Hung,8,7,7.5,9
+75,20120099,Tran Huynh Huong,8,7,7.5,9
+76,20120100,Do Minh Huy,8,7,7.5,9
+77,20120101,Du Quoc Huy,8,7,7.5,9
+78,20120102,Du Thanh Huy,8,7,7.5,9
+79,20120105,Le Hoang Huy,8,7,7.5,9
+80,20120107,Pham Duc Huy,8,7,7.5,9
+81,20120109,Truong Ngoc Huy,8,7,7.5,9
+82,20120113,Le Nguyen Khang,8,7,7.5,9
+83,20120115,Nguyen Dang Nam Khanh,8,7,7.5,9
+84,20120116,Pham Le Quoc Khanh,8,7,7.5,9
+85,20120117,Pham Nguyen Khanh Minh,8,7,7.5,9
+86,20120118,Nguyen Anh Khoa,8,7,7.5,9
+87,20120120,Nguyen Viet Khoa,8,7,7.5,9
+88,20120121,Pham Nhat Anh Khoa,8,7,7.5,9
+89,20120125,Bui Anh Kiet,8,7,7.5,9
+90,20120127,Tran Minh Tuan Kiet,8,7,7.5,9
+91,20120128,Nguyen Thi Cam Lai,8,7,7.5,9
+92,20120130,Dinh Thi Hoang Linh,8,7,7.5,9
+93,20120131,Nguyen Van Loc,8,7,7.5,9
+94,20120132,Nguyen Tuan Minh,8,7,7.5,9
+95,20120133,Pham Le Hoai Minh,8,7,7.5,9
+96,20120134,Tran Nguyen Khai Minh,8,7,7.5,9
+97,20120136,Huynh Tuan Nam,8,7,7.5,9
+98,20120138,Le Thanh Nam,8,7,7.5,9
+99,20120139,Mai Nhat Nam,8,7,7.5,9
+100,20120140,Nguyen Dang Nam,8,7,7.5,9
+101,20120141,Tran Hoang Phuong Nam,8,7,7.5,9
+102,20120142,Phan Thi Kim Ngan,8,7,7.5,9
+103,20120144,Le Chi Nghia,8,7,7.5,9
+104,20120145,Duong Yen Ngoc,8,7,7.5,9

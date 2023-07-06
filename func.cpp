@@ -1078,9 +1078,55 @@ void viewlistofcourses1(schoolyear scy, int q, list* l, node* temp) {
 }
 
 void viewscoreboardpublished(schoolyear scy, list* l, int q, int a,string tk) {
-	node* temp = l[a].head;
-	string temp1;
-	while (temp != NULL) {
+	string temp,temp1;
+	int dem = 0;
+	for (int i = 1; i <= scy.s[q].numofclass; i++) {
+		node* temp2 = l[i].head;
+		while (temp2 != NULL) {
+			if (temp2->s->studentid == tk) dem++;
+			if (dem == a) {
+				if (scy.s[q].cr[i].publishscore == true) {
+					ifstream f;
+					f.open(scy.s[q].cr[i].scoreboard);
+					if (!f.is_open()) {
+						cout << "the scoreboard of this course does not exist" << endl;
+						return;
+					}
+					else {
+						while (!f.eof()) {
+							getline(f, temp);
+							if (f.eof()) {
+								f.close();
+								return;
+							}
+							int c = 0, d = 0;
+							while (c < temp.length()) {
+								if (c != 0) c++;
+								string temp1;
+								while (temp[c] != ',' && c < temp.length()) {
+									temp1 += temp[c];
+									c++;
+								}
+								d++;
+								if (d == 3) cout << setw(30) << left << temp1;
+								else {
+									if (d == 2) cout << setw(15) << left << temp1;
+									else cout << setw(d * 4) << left << temp1;
+								}
+							}
+							cout << endl;
+						}
+					}
+				}
+				else {
+					cout << "the scoreboard of this course has not been published" << endl;
+					return;
+				}
+			}
+			temp2 = temp2->next;
+		}
+	}
+	/*while (temp != NULL) {
 		if (temp->s->studentid == tk) {
 			if (scy.s[q].cr[a].publishscore == true) {
 				ifstream f;
@@ -1104,7 +1150,7 @@ void viewscoreboardpublished(schoolyear scy, list* l, int q, int a,string tk) {
 			}
 		}
 		temp = temp->next;
-	}
+	}*/
 }
 
 void scoreboardofclass(schoolyear scy, list* l, int q, int a, list* l1, list* l2, list* l3) {
